@@ -1,0 +1,29 @@
+{
+  "name": "temporal-fns",
+  "version": "0.1.0",
+  "description": "Date utility functions built on the Temporal API",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsc --build",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "biome check .",
+    "format": "biome format --write .",
+    "typecheck": "tsc --noEmit && tsc --project tsconfig.test.json --noEmit"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.0",
+    "@vitest/coverage-v8": "^3.0.0",
+    "temporal-polyfill": "^0.3.0",
+    "typescript": "^5.8.0",
+    "vitest": "^3.0.0"
+  }
+}
