@@ -1,5 +1,5 @@
 {
-  "name": "temporal-fns",
+  "name": "@rzyns/temporal-fns",
   "version": "0.1.0",
   "description": "Date utility functions built on the Temporal API",
   "type": "module",
@@ -10,6 +10,11 @@
       "import": "./dist/index.js",
       "types": "./dist/index.d.ts"
     }
+  },
+  "files": ["dist", "README.md", "LICENSE"],
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "public"
   },
   "scripts": {
     "build": "tsc --build",
