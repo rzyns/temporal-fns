@@ -1,18 +1,48 @@
 name: Publish to GitHub Packages
 
 on:
-  release:
-    types: [published]
+  # Triggers automatically after a successful Release workflow run.
+  # Using workflow_run instead of release: [published] because GitHub does
+  # not fire the "published" event when a release is created by a workflow
+  # using GITHUB_TOKEN (only PAT-created releases trigger it).
+  workflow_run:
+    workflows: ["Release"]
+    types: [completed]
+
+  # Also allow manual dispatch — useful for re-publishing or recovering
+  # from a failed publish without cutting a new release.
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Tag to publish (e.g. v0.1.0)"
+        required: true
+        type: string
 
 jobs:
   publish:
     name: Publish
     runs-on: ubuntu-latest
+    # For workflow_run: only proceed if the Release workflow succeeded.
+    # For workflow_dispatch: always proceed.
+    if: >
+      github.event_name == 'workflow_dispatch' ||
+      github.event.workflow_run.conclusion == 'success'
     permissions:
       contents: read
       packages: write # required to push to GitHub Packages
     steps:
+      - name: Resolve tag
+        id: tag
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "name=${{ inputs.tag }}" >> "$GITHUB_OUTPUT"
+          else
+            echo "name=${{ github.event.workflow_run.head_branch }}" >> "$GITHUB_OUTPUT"
+          fi
+
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ steps.tag.outputs.name }}
 
       - uses: pnpm/action-setup@v4
 
@@ -30,11 +60,11 @@ jobs:
         run: pnpm build
 
       - name: Set version from tag
-        # Strips the 'v' prefix from the git tag (v1.2.3 → 1.2.3) and sets
-        # it in package.json so the published version matches the tag exactly.
+        # Strip the 'v' prefix so v1.2.3 → publishes as 1.2.3
         run: |
-          TAG="${GITHUB_REF_NAME#v}"
-          pnpm version "$TAG" --no-git-tag-version --allow-same-version
+          TAG="${{ steps.tag.outputs.name }}"
+          VERSION="${TAG#v}"
+          pnpm version "$VERSION" --no-git-tag-version --allow-same-version
 
       - name: Publish
         run: pnpm publish --no-git-checks
