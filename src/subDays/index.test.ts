@@ -14,7 +14,9 @@ describe("subDays", () => {
   });
 
   it("subtracts days from a ZonedDateTime", () => {
-    const zdt = Temporal.ZonedDateTime.from("2024-01-15T10:30:00[America/New_York]");
+    const zdt = Temporal.ZonedDateTime.from(
+      "2024-01-15T10:30:00[America/New_York]",
+    );
     const result = subDays(zdt, 3);
     expect(result.day).toBe(12);
   });

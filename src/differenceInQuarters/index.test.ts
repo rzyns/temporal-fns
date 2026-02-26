@@ -27,8 +27,12 @@ describe("differenceInQuarters", () => {
   });
 
   it("works with ZonedDateTime inputs", () => {
-    const left = Temporal.ZonedDateTime.from("2025-01-01T00:00:00[America/New_York]");
-    const right = Temporal.ZonedDateTime.from("2024-01-01T00:00:00[America/New_York]");
+    const left = Temporal.ZonedDateTime.from(
+      "2025-01-01T00:00:00[America/New_York]",
+    );
+    const right = Temporal.ZonedDateTime.from(
+      "2024-01-01T00:00:00[America/New_York]",
+    );
     expect(differenceInQuarters(left, right)).toBe(4);
   });
 });

@@ -1,5 +1,10 @@
-import type { AnyTemporalDate, DayOfWeek, TemporalInterval, WorkingDayOptions } from "../types.js";
 import { compareAsc } from "../compareAsc/index.js";
+import type {
+  AnyTemporalDate,
+  DayOfWeek,
+  TemporalInterval,
+  WorkingDayOptions,
+} from "../types.js";
 
 const DEFAULT_WORKING_DAYS: ReadonlyArray<DayOfWeek> = [1, 2, 3, 4, 5];
 

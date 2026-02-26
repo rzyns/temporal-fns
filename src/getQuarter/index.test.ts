@@ -22,7 +22,9 @@ describe("getQuarter", () => {
   });
 
   it("returns 4 for December", () => {
-    const zdt = Temporal.ZonedDateTime.from("2024-12-31T23:59:59[America/New_York]");
+    const zdt = Temporal.ZonedDateTime.from(
+      "2024-12-31T23:59:59[America/New_York]",
+    );
     expect(getQuarter(zdt)).toBe(4);
   });
 

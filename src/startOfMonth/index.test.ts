@@ -14,7 +14,9 @@ describe("startOfMonth", () => {
   });
 
   it("sets day to 1 and time to midnight for ZonedDateTime", () => {
-    const zdt = Temporal.ZonedDateTime.from("2024-06-15T14:30:00[America/New_York]");
+    const zdt = Temporal.ZonedDateTime.from(
+      "2024-06-15T14:30:00[America/New_York]",
+    );
     const result = startOfMonth(zdt);
     expect(result.day).toBe(1);
     expect(result.hour).toBe(0);

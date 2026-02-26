@@ -14,7 +14,9 @@ describe("endOfYear", () => {
   });
 
   it("sets to Dec 31 end of day for ZonedDateTime", () => {
-    const zdt = Temporal.ZonedDateTime.from("2024-06-15T10:00:00[America/New_York]");
+    const zdt = Temporal.ZonedDateTime.from(
+      "2024-06-15T10:00:00[America/New_York]",
+    );
     const result = endOfYear(zdt);
     expect(result.month).toBe(12);
     expect(result.day).toBe(31);

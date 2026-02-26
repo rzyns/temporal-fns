@@ -14,7 +14,9 @@ describe("addMinutes", () => {
   });
 
   it("adds minutes to a ZonedDateTime", () => {
-    const zdt = Temporal.ZonedDateTime.from("2024-01-15T10:00:00[Europe/Berlin]");
+    const zdt = Temporal.ZonedDateTime.from(
+      "2024-01-15T10:00:00[Europe/Berlin]",
+    );
     const result = addMinutes(zdt, 45);
     expect(result.minute).toBe(45);
   });

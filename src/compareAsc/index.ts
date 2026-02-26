@@ -9,8 +9,7 @@ function hasTime(
   d: AnyTemporalDate,
 ): d is Temporal.PlainDateTime | Temporal.ZonedDateTime {
   return (
-    d instanceof Temporal.PlainDateTime ||
-    d instanceof Temporal.ZonedDateTime
+    d instanceof Temporal.PlainDateTime || d instanceof Temporal.ZonedDateTime
   );
 }
 

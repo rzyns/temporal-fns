@@ -7,7 +7,7 @@ describe("eachYearOfInterval", () => {
       end: Temporal.PlainDate.from("2024-03-10"),
     };
     const result = eachYearOfInterval(interval);
-    expect(result.map(d => d.toString())).toEqual([
+    expect(result.map((d) => d.toString())).toEqual([
       "2020-01-01",
       "2021-01-01",
       "2022-01-01",
@@ -41,7 +41,7 @@ describe("eachYearOfInterval", () => {
       end: Temporal.PlainDate.from("2024-01-01"),
     };
     const result = eachYearOfInterval(interval);
-    expect(result.map(d => d.toString())).toEqual([
+    expect(result.map((d) => d.toString())).toEqual([
       "2022-01-01",
       "2023-01-01",
       "2024-01-01",

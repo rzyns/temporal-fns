@@ -29,7 +29,9 @@ describe("startOfWeek", () => {
   });
 
   it("sets time to midnight for ZonedDateTime", () => {
-    const zdt = Temporal.ZonedDateTime.from("2024-06-12T14:30:00[America/New_York]");
+    const zdt = Temporal.ZonedDateTime.from(
+      "2024-06-12T14:30:00[America/New_York]",
+    );
     const result = startOfWeek(zdt);
     expect(result.dayOfWeek).toBe(1);
     expect(result.hour).toBe(0);

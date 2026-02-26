@@ -1,5 +1,5 @@
-import type { AnyTemporalDate, TemporalInterval } from "../types.js";
 import { compareAsc } from "../compareAsc/index.js";
+import type { AnyTemporalDate, TemporalInterval } from "../types.js";
 
 export function eachDayOfInterval<T extends AnyTemporalDate>(
   interval: TemporalInterval<T>,

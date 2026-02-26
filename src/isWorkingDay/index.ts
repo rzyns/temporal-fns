@@ -1,4 +1,8 @@
-import type { AnyTemporalDate, DayOfWeek, WorkingDayOptions } from "../types.js";
+import type {
+  AnyTemporalDate,
+  DayOfWeek,
+  WorkingDayOptions,
+} from "../types.js";
 
 const DEFAULT_WORKING_DAYS: ReadonlyArray<DayOfWeek> = [1, 2, 3, 4, 5];
 

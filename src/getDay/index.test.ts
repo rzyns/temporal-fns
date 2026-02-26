@@ -15,7 +15,9 @@ describe("getDay", () => {
 
   it("returns the day of week of a ZonedDateTime", () => {
     // 2024-06-16 is a Sunday
-    const zdt = Temporal.ZonedDateTime.from("2024-06-16T10:30:00[America/New_York]");
+    const zdt = Temporal.ZonedDateTime.from(
+      "2024-06-16T10:30:00[America/New_York]",
+    );
     expect(getDay(zdt)).toBe(7);
   });
 

@@ -30,7 +30,14 @@ describe("add", () => {
 
   it("adds a complex duration to PlainDateTime", () => {
     const dt = Temporal.PlainDateTime.from("2024-06-15T12:00:00");
-    const duration = Temporal.Duration.from({ years: 1, months: 1, days: 1, hours: 1, minutes: 1, seconds: 1 });
+    const duration = Temporal.Duration.from({
+      years: 1,
+      months: 1,
+      days: 1,
+      hours: 1,
+      minutes: 1,
+      seconds: 1,
+    });
     const result = add(dt, duration);
     expect(result.toString()).toBe("2025-07-16T13:01:01");
   });

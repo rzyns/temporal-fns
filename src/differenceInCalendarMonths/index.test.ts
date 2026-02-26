@@ -25,8 +25,12 @@ describe("differenceInCalendarMonths", () => {
   });
 
   it("works with ZonedDateTime inputs", () => {
-    const left = Temporal.ZonedDateTime.from("2024-06-15T10:00:00[Europe/London]");
-    const right = Temporal.ZonedDateTime.from("2024-01-15T10:00:00[Europe/London]");
+    const left = Temporal.ZonedDateTime.from(
+      "2024-06-15T10:00:00[Europe/London]",
+    );
+    const right = Temporal.ZonedDateTime.from(
+      "2024-01-15T10:00:00[Europe/London]",
+    );
     expect(differenceInCalendarMonths(left, right)).toBe(5);
   });
 });

@@ -46,7 +46,9 @@ describe("areIntervalsOverlapping", () => {
       start: Temporal.PlainDate.from("2024-01-10"),
       end: Temporal.PlainDate.from("2024-01-15"),
     };
-    expect(areIntervalsOverlapping(intervalA, intervalB, { inclusive: true })).toBe(true);
+    expect(
+      areIntervalsOverlapping(intervalA, intervalB, { inclusive: true }),
+    ).toBe(true);
   });
 
   it("returns true when one interval fully contains the other", () => {

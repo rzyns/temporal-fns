@@ -13,7 +13,9 @@ describe("getWeekOfYear", () => {
   });
 
   it("returns the ISO week number of a ZonedDateTime", () => {
-    const zdt = Temporal.ZonedDateTime.from("2024-12-31T10:30:00[America/New_York]");
+    const zdt = Temporal.ZonedDateTime.from(
+      "2024-12-31T10:30:00[America/New_York]",
+    );
     expect(getWeekOfYear(zdt)).toBe(1); // Dec 31, 2024 is in ISO week 1 of 2025
   });
 

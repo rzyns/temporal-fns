@@ -6,11 +6,15 @@ describe("isTemporalDate", () => {
   });
 
   it("returns true for PlainDateTime", () => {
-    expect(isTemporalDate(Temporal.PlainDateTime.from("2024-01-01T10:00:00"))).toBe(true);
+    expect(
+      isTemporalDate(Temporal.PlainDateTime.from("2024-01-01T10:00:00")),
+    ).toBe(true);
   });
 
   it("returns true for ZonedDateTime", () => {
-    expect(isTemporalDate(Temporal.ZonedDateTime.from("2024-01-01T10:00:00[UTC]"))).toBe(true);
+    expect(
+      isTemporalDate(Temporal.ZonedDateTime.from("2024-01-01T10:00:00[UTC]")),
+    ).toBe(true);
   });
 
   it("returns false for non-Temporal values", () => {
@@ -21,7 +25,9 @@ describe("isTemporalDate", () => {
   });
 
   it("returns false for Instant", () => {
-    expect(isTemporalDate(Temporal.Instant.from("2024-01-01T00:00:00Z"))).toBe(false);
+    expect(isTemporalDate(Temporal.Instant.from("2024-01-01T00:00:00Z"))).toBe(
+      false,
+    );
   });
 
   it("returns false for PlainTime", () => {

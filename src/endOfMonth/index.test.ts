@@ -20,7 +20,9 @@ describe("endOfMonth", () => {
   });
 
   it("sets day and time to end of month for ZonedDateTime", () => {
-    const zdt = Temporal.ZonedDateTime.from("2024-06-15T10:00:00[America/New_York]");
+    const zdt = Temporal.ZonedDateTime.from(
+      "2024-06-15T10:00:00[America/New_York]",
+    );
     const result = endOfMonth(zdt);
     expect(result.day).toBe(30);
     expect(result.hour).toBe(23);

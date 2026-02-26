@@ -12,7 +12,9 @@ describe("getMinutes", () => {
   });
 
   it("returns the minute of a ZonedDateTime", () => {
-    const zdt = Temporal.ZonedDateTime.from("2024-06-15T23:59:59[America/New_York]");
+    const zdt = Temporal.ZonedDateTime.from(
+      "2024-06-15T23:59:59[America/New_York]",
+    );
     expect(getMinutes(zdt)).toBe(59);
   });
 

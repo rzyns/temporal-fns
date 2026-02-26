@@ -14,7 +14,9 @@ describe("setMonth", () => {
   });
 
   it("sets the month of a ZonedDateTime and preserves timezone", () => {
-    const zdt = Temporal.ZonedDateTime.from("2024-06-15T10:30:00[America/New_York]");
+    const zdt = Temporal.ZonedDateTime.from(
+      "2024-06-15T10:30:00[America/New_York]",
+    );
     const result = setMonth(zdt, 3);
     expect(result.month).toBe(3);
     expect(result.day).toBe(15);

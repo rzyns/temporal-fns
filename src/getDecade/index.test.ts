@@ -12,7 +12,9 @@ describe("getDecade", () => {
   });
 
   it("returns the decade of a ZonedDateTime", () => {
-    const zdt = Temporal.ZonedDateTime.from("2000-01-01T00:00:00[America/New_York]");
+    const zdt = Temporal.ZonedDateTime.from(
+      "2000-01-01T00:00:00[America/New_York]",
+    );
     expect(getDecade(zdt)).toBe(2000);
   });
 

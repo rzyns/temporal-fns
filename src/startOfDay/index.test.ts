@@ -14,7 +14,9 @@ describe("startOfDay", () => {
   });
 
   it("sets time to midnight for ZonedDateTime", () => {
-    const zdt = Temporal.ZonedDateTime.from("2024-06-15T14:30:45[America/New_York]");
+    const zdt = Temporal.ZonedDateTime.from(
+      "2024-06-15T14:30:45[America/New_York]",
+    );
     const result = startOfDay(zdt);
     expect(result.hour).toBe(0);
     expect(result.minute).toBe(0);

@@ -16,7 +16,9 @@ describe("withTimeZone", () => {
   });
 
   it("converts between non-UTC timezones", () => {
-    const zdt = Temporal.ZonedDateTime.from("2024-06-15T10:00:00[America/New_York]");
+    const zdt = Temporal.ZonedDateTime.from(
+      "2024-06-15T10:00:00[America/New_York]",
+    );
     const result = withTimeZone(zdt, "Asia/Tokyo");
     expect(result.timeZoneId).toBe("Asia/Tokyo");
     expect(result.epochMilliseconds).toBe(zdt.epochMilliseconds);

@@ -14,7 +14,9 @@ describe("startOfYear", () => {
   });
 
   it("sets to Jan 1 midnight for ZonedDateTime", () => {
-    const zdt = Temporal.ZonedDateTime.from("2024-06-15T14:30:00[America/New_York]");
+    const zdt = Temporal.ZonedDateTime.from(
+      "2024-06-15T14:30:00[America/New_York]",
+    );
     const result = startOfYear(zdt);
     expect(result.month).toBe(1);
     expect(result.day).toBe(1);

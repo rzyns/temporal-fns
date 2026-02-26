@@ -23,7 +23,9 @@ describe("setQuarter", () => {
   });
 
   it("sets quarter on a ZonedDateTime and preserves timezone", () => {
-    const zdt = Temporal.ZonedDateTime.from("2024-04-15T10:30:00[America/New_York]");
+    const zdt = Temporal.ZonedDateTime.from(
+      "2024-04-15T10:30:00[America/New_York]",
+    );
     const result = setQuarter(zdt, 1);
     expect(result.month).toBe(1);
     expect(result.day).toBe(15);

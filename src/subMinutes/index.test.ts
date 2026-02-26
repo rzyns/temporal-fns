@@ -14,7 +14,9 @@ describe("subMinutes", () => {
   });
 
   it("subtracts minutes from a ZonedDateTime", () => {
-    const zdt = Temporal.ZonedDateTime.from("2024-01-15T10:45:00[Europe/Berlin]");
+    const zdt = Temporal.ZonedDateTime.from(
+      "2024-01-15T10:45:00[Europe/Berlin]",
+    );
     const result = subMinutes(zdt, 45);
     expect(result.minute).toBe(0);
     expect(result.hour).toBe(10);

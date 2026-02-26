@@ -14,7 +14,9 @@ describe("addHours", () => {
   });
 
   it("adds hours to a ZonedDateTime", () => {
-    const zdt = Temporal.ZonedDateTime.from("2024-01-15T10:00:00[America/New_York]");
+    const zdt = Temporal.ZonedDateTime.from(
+      "2024-01-15T10:00:00[America/New_York]",
+    );
     const result = addHours(zdt, 8);
     expect(result.hour).toBe(18);
   });

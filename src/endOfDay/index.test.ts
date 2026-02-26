@@ -14,7 +14,9 @@ describe("endOfDay", () => {
   });
 
   it("sets time to end of day for ZonedDateTime", () => {
-    const zdt = Temporal.ZonedDateTime.from("2024-06-15T10:00:00[America/New_York]");
+    const zdt = Temporal.ZonedDateTime.from(
+      "2024-06-15T10:00:00[America/New_York]",
+    );
     const result = endOfDay(zdt);
     expect(result.hour).toBe(23);
     expect(result.minute).toBe(59);

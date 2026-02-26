@@ -2,7 +2,9 @@ import { toPlainDateTime } from "./index.js";
 
 describe("toPlainDateTime", () => {
   it("converts ZonedDateTime to PlainDateTime", () => {
-    const zdt = Temporal.ZonedDateTime.from("2024-06-15T10:30:00[America/New_York]");
+    const zdt = Temporal.ZonedDateTime.from(
+      "2024-06-15T10:30:00[America/New_York]",
+    );
     const result = toPlainDateTime(zdt);
     expect(result instanceof Temporal.PlainDateTime).toBe(true);
     expect(result.year).toBe(2024);
@@ -32,7 +34,9 @@ describe("toPlainDateTime", () => {
   });
 
   it("works with different timezones", () => {
-    const zdt = Temporal.ZonedDateTime.from("2024-01-01T00:00:00[Europe/London]");
+    const zdt = Temporal.ZonedDateTime.from(
+      "2024-01-01T00:00:00[Europe/London]",
+    );
     const result = toPlainDateTime(zdt);
     expect(result.year).toBe(2024);
     expect(result.month).toBe(1);

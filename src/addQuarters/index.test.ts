@@ -14,7 +14,9 @@ describe("addQuarters", () => {
   });
 
   it("adds quarters to a ZonedDateTime", () => {
-    const zdt = Temporal.ZonedDateTime.from("2024-01-01T00:00:00[America/New_York]");
+    const zdt = Temporal.ZonedDateTime.from(
+      "2024-01-01T00:00:00[America/New_York]",
+    );
     const result = addQuarters(zdt, 4);
     expect(result.year).toBe(2025);
     expect(result.month).toBe(1);

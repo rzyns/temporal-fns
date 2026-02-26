@@ -14,7 +14,9 @@ describe("addMonths", () => {
   });
 
   it("adds months to a ZonedDateTime", () => {
-    const zdt = Temporal.ZonedDateTime.from("2024-06-10T12:00:00[Europe/London]");
+    const zdt = Temporal.ZonedDateTime.from(
+      "2024-06-10T12:00:00[Europe/London]",
+    );
     const result = addMonths(zdt, 6);
     expect(result.month).toBe(12);
     expect(result.day).toBe(10);

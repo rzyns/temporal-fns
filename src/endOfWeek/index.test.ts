@@ -22,7 +22,9 @@ describe("endOfWeek", () => {
   });
 
   it("sets time to end of day for ZonedDateTime", () => {
-    const zdt = Temporal.ZonedDateTime.from("2024-06-12T14:30:00[America/New_York]");
+    const zdt = Temporal.ZonedDateTime.from(
+      "2024-06-12T14:30:00[America/New_York]",
+    );
     const result = endOfWeek(zdt);
     expect(result.dayOfWeek).toBe(7);
     expect(result.hour).toBe(23);

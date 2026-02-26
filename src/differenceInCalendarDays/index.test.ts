@@ -31,8 +31,12 @@ describe("differenceInCalendarDays", () => {
   });
 
   it("works with ZonedDateTime inputs", () => {
-    const left = Temporal.ZonedDateTime.from("2024-03-15T10:00:00[America/New_York]");
-    const right = Temporal.ZonedDateTime.from("2024-03-10T10:00:00[America/New_York]");
+    const left = Temporal.ZonedDateTime.from(
+      "2024-03-15T10:00:00[America/New_York]",
+    );
+    const right = Temporal.ZonedDateTime.from(
+      "2024-03-10T10:00:00[America/New_York]",
+    );
     expect(differenceInCalendarDays(left, right)).toBe(5);
   });
 });

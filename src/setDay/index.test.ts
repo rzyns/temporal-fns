@@ -31,7 +31,9 @@ describe("setDay", () => {
   });
 
   it("sets ZonedDateTime to Thursday and preserves timezone", () => {
-    const zdt = Temporal.ZonedDateTime.from("2024-06-12T14:30:00[America/New_York]");
+    const zdt = Temporal.ZonedDateTime.from(
+      "2024-06-12T14:30:00[America/New_York]",
+    );
     const result = setDay(zdt, 4);
     expect(result.dayOfWeek).toBe(4); // Thursday
     expect(result.timeZoneId).toBe("America/New_York");

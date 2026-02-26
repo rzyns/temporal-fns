@@ -8,7 +8,9 @@ describe("setHours", () => {
   });
 
   it("sets the hours of a ZonedDateTime and preserves timezone", () => {
-    const zdt = Temporal.ZonedDateTime.from("2024-06-15T10:30:00[America/New_York]");
+    const zdt = Temporal.ZonedDateTime.from(
+      "2024-06-15T10:30:00[America/New_York]",
+    );
     const result = setHours(zdt, 23);
     expect(result.hour).toBe(23);
     expect(result.minute).toBe(30);

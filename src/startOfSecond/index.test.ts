@@ -8,7 +8,9 @@ describe("startOfSecond", () => {
   });
 
   it("sets sub-second fields to zero for ZonedDateTime", () => {
-    const zdt = Temporal.ZonedDateTime.from("2024-06-15T14:35:45.123456789[America/New_York]");
+    const zdt = Temporal.ZonedDateTime.from(
+      "2024-06-15T14:35:45.123456789[America/New_York]",
+    );
     const result = startOfSecond(zdt);
     expect(result.second).toBe(45);
     expect(result.millisecond).toBe(0);

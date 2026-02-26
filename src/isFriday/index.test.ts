@@ -12,9 +12,7 @@ describe("isFriday", () => {
   });
 
   it("works with ZonedDateTime", () => {
-    const date = Temporal.ZonedDateTime.from(
-      "2024-06-14T17:00:00[Asia/Tokyo]",
-    );
+    const date = Temporal.ZonedDateTime.from("2024-06-14T17:00:00[Asia/Tokyo]");
     expect(isFriday(date)).toBe(true);
   });
 });

@@ -20,7 +20,9 @@ describe("startOfQuarter", () => {
   });
 
   it("returns start of Q4 for December ZonedDateTime", () => {
-    const zdt = Temporal.ZonedDateTime.from("2024-12-25T10:00:00[America/New_York]");
+    const zdt = Temporal.ZonedDateTime.from(
+      "2024-12-25T10:00:00[America/New_York]",
+    );
     const result = startOfQuarter(zdt);
     expect(result.month).toBe(10);
     expect(result.day).toBe(1);

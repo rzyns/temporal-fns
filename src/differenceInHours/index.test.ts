@@ -25,8 +25,12 @@ describe("differenceInHours", () => {
   });
 
   it("works with ZonedDateTime inputs using epoch-based calculation", () => {
-    const left = Temporal.ZonedDateTime.from("2024-03-10T12:00:00[America/New_York]");
-    const right = Temporal.ZonedDateTime.from("2024-03-10T00:00:00[America/New_York]");
+    const left = Temporal.ZonedDateTime.from(
+      "2024-03-10T12:00:00[America/New_York]",
+    );
+    const right = Temporal.ZonedDateTime.from(
+      "2024-03-10T00:00:00[America/New_York]",
+    );
     // DST spring forward happens at 2am, so wall clock loses an hour but epoch is accurate
     expect(differenceInHours(left, right)).toBe(11);
   });

@@ -13,7 +13,9 @@ describe("getDayOfYear", () => {
   });
 
   it("returns the day of year of a ZonedDateTime", () => {
-    const zdt = Temporal.ZonedDateTime.from("2024-12-31T10:30:00[America/New_York]");
+    const zdt = Temporal.ZonedDateTime.from(
+      "2024-12-31T10:30:00[America/New_York]",
+    );
     expect(getDayOfYear(zdt)).toBe(366); // 2024 is a leap year
   });
 

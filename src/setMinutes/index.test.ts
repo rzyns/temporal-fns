@@ -8,7 +8,9 @@ describe("setMinutes", () => {
   });
 
   it("sets the minutes of a ZonedDateTime and preserves timezone", () => {
-    const zdt = Temporal.ZonedDateTime.from("2024-06-15T10:30:00[America/New_York]");
+    const zdt = Temporal.ZonedDateTime.from(
+      "2024-06-15T10:30:00[America/New_York]",
+    );
     const result = setMinutes(zdt, 45);
     expect(result.minute).toBe(45);
     expect(result.hour).toBe(10);
@@ -34,7 +36,9 @@ describe("setMinutes", () => {
   });
 
   it("preserves date components", () => {
-    const zdt = Temporal.ZonedDateTime.from("2024-12-31T23:59:59[Europe/London]");
+    const zdt = Temporal.ZonedDateTime.from(
+      "2024-12-31T23:59:59[Europe/London]",
+    );
     const result = setMinutes(zdt, 30);
     expect(result.minute).toBe(30);
     expect(result.year).toBe(2024);

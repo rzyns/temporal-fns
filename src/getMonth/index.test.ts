@@ -12,7 +12,9 @@ describe("getMonth", () => {
   });
 
   it("returns the month of a ZonedDateTime", () => {
-    const zdt = Temporal.ZonedDateTime.from("2024-12-25T10:30:00[America/New_York]");
+    const zdt = Temporal.ZonedDateTime.from(
+      "2024-12-25T10:30:00[America/New_York]",
+    );
     expect(getMonth(zdt)).toBe(12);
   });
 

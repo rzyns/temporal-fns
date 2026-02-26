@@ -30,7 +30,14 @@ describe("sub", () => {
 
   it("subtracts a complex duration from PlainDateTime", () => {
     const dt = Temporal.PlainDateTime.from("2025-07-16T13:01:01");
-    const duration = Temporal.Duration.from({ years: 1, months: 1, days: 1, hours: 1, minutes: 1, seconds: 1 });
+    const duration = Temporal.Duration.from({
+      years: 1,
+      months: 1,
+      days: 1,
+      hours: 1,
+      minutes: 1,
+      seconds: 1,
+    });
     const result = sub(dt, duration);
     expect(result.toString()).toBe("2024-06-15T12:00:00");
   });

@@ -14,7 +14,9 @@ describe("subYears", () => {
   });
 
   it("subtracts years from a ZonedDateTime", () => {
-    const zdt = Temporal.ZonedDateTime.from("2024-07-04T18:00:00[America/Chicago]");
+    const zdt = Temporal.ZonedDateTime.from(
+      "2024-07-04T18:00:00[America/Chicago]",
+    );
     const result = subYears(zdt, 1);
     expect(result.year).toBe(2023);
   });

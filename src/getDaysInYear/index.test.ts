@@ -17,7 +17,9 @@ describe("getDaysInYear", () => {
   });
 
   it("works with ZonedDateTime", () => {
-    const zdt = Temporal.ZonedDateTime.from("2100-06-15T10:30:00[America/New_York]");
+    const zdt = Temporal.ZonedDateTime.from(
+      "2100-06-15T10:30:00[America/New_York]",
+    );
     expect(getDaysInYear(zdt)).toBe(365); // 2100 is not a leap year
   });
 

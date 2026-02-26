@@ -7,7 +7,12 @@ describe("formatISODuration", () => {
   });
 
   it("formats a complex duration", () => {
-    const d = Temporal.Duration.from({ years: 1, months: 2, days: 3, hours: 4 });
+    const d = Temporal.Duration.from({
+      years: 1,
+      months: 2,
+      days: 3,
+      hours: 4,
+    });
     expect(formatISODuration(d)).toBe("P1Y2M3DT4H");
   });
 

@@ -14,7 +14,9 @@ describe("addYears", () => {
   });
 
   it("adds years to a ZonedDateTime", () => {
-    const zdt = Temporal.ZonedDateTime.from("2024-07-04T18:00:00[America/Chicago]");
+    const zdt = Temporal.ZonedDateTime.from(
+      "2024-07-04T18:00:00[America/Chicago]",
+    );
     const result = addYears(zdt, 1);
     expect(result.year).toBe(2025);
     expect(result.month).toBe(7);

@@ -20,7 +20,9 @@ describe("endOfQuarter", () => {
   });
 
   it("returns end of Q4 (December 31) for ZonedDateTime", () => {
-    const zdt = Temporal.ZonedDateTime.from("2024-12-25T10:00:00[America/New_York]");
+    const zdt = Temporal.ZonedDateTime.from(
+      "2024-12-25T10:00:00[America/New_York]",
+    );
     const result = endOfQuarter(zdt);
     expect(result.month).toBe(12);
     expect(result.day).toBe(31);

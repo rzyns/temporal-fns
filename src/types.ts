@@ -17,9 +17,7 @@ export type AnyTemporalDateTime =
 /**
  * Any Temporal type that can represent an exact instant in history.
  */
-export type AnyTemporalInstant =
-  | Temporal.Instant
-  | Temporal.ZonedDateTime;
+export type AnyTemporalInstant = Temporal.Instant | Temporal.ZonedDateTime;
 
 /**
  * Any Temporal type that carries a time component.

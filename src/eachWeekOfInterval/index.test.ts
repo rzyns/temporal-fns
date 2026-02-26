@@ -5,10 +5,10 @@ describe("eachWeekOfInterval", () => {
     // 2024-01-01 is a Monday
     const interval = {
       start: Temporal.PlainDate.from("2024-01-03"), // Wednesday
-      end: Temporal.PlainDate.from("2024-01-22"),   // Monday
+      end: Temporal.PlainDate.from("2024-01-22"), // Monday
     };
     const result = eachWeekOfInterval(interval);
-    expect(result.map(d => d.toString())).toEqual([
+    expect(result.map((d) => d.toString())).toEqual([
       "2024-01-01", // Mon (startOfWeek of Wed Jan 3)
       "2024-01-08", // Mon
       "2024-01-15", // Mon
@@ -20,10 +20,10 @@ describe("eachWeekOfInterval", () => {
     // 2024-01-07 is a Sunday
     const interval = {
       start: Temporal.PlainDate.from("2024-01-03"), // Wednesday
-      end: Temporal.PlainDate.from("2024-01-20"),   // Saturday
+      end: Temporal.PlainDate.from("2024-01-20"), // Saturday
     };
     const result = eachWeekOfInterval(interval, { weekStartsOn: 7 });
-    expect(result.map(d => d.toString())).toEqual([
+    expect(result.map((d) => d.toString())).toEqual([
       "2023-12-31", // Sun (startOfWeek of Wed Jan 3)
       "2024-01-07", // Sun
       "2024-01-14", // Sun
@@ -33,7 +33,7 @@ describe("eachWeekOfInterval", () => {
   it("returns single week when interval is within one week", () => {
     const interval = {
       start: Temporal.PlainDate.from("2024-01-02"), // Tuesday
-      end: Temporal.PlainDate.from("2024-01-04"),   // Thursday
+      end: Temporal.PlainDate.from("2024-01-04"), // Thursday
     };
     const result = eachWeekOfInterval(interval);
     expect(result).toHaveLength(1);
@@ -52,10 +52,10 @@ describe("eachWeekOfInterval", () => {
   it("handles month boundary crossings", () => {
     const interval = {
       start: Temporal.PlainDate.from("2024-01-29"), // Monday
-      end: Temporal.PlainDate.from("2024-02-12"),   // Monday
+      end: Temporal.PlainDate.from("2024-02-12"), // Monday
     };
     const result = eachWeekOfInterval(interval);
-    expect(result.map(d => d.toString())).toEqual([
+    expect(result.map((d) => d.toString())).toEqual([
       "2024-01-29", // Mon
       "2024-02-05", // Mon
       "2024-02-12", // Mon

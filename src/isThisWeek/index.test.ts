@@ -1,5 +1,5 @@
-import { isThisWeek } from "./index.js";
 import type { ClockProvider } from "../types.js";
+import { isThisWeek } from "./index.js";
 
 // 2024-06-15 is a Saturday. The ISO week (Mon start) is June 10-16.
 const mockClock: ClockProvider = {
@@ -42,8 +42,6 @@ describe("isThisWeek", () => {
     // With Sunday as week start, June 15 (Sat) and June 9 (Sun) are in different weeks
     // June 9 (Sun) starts a week: June 9-15. June 15 is still in that week.
     const date = Temporal.ZonedDateTime.from("2024-06-09T12:00:00[UTC]");
-    expect(
-      isThisWeek(date, { clock: mockClock, weekStartsOn: 7 }),
-    ).toBe(true);
+    expect(isThisWeek(date, { clock: mockClock, weekStartsOn: 7 })).toBe(true);
   });
 });

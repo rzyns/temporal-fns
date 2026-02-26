@@ -7,9 +7,21 @@ import type { AnyTemporalDate } from "../types.js";
  * @param month - The month to set (1-12)
  * @returns A new date with the month set
  */
-export function setMonth(date: Temporal.ZonedDateTime, month: number): Temporal.ZonedDateTime;
-export function setMonth(date: Temporal.PlainDateTime, month: number): Temporal.PlainDateTime;
-export function setMonth(date: Temporal.PlainDate, month: number): Temporal.PlainDate;
-export function setMonth(date: AnyTemporalDate, month: number): AnyTemporalDate {
+export function setMonth(
+  date: Temporal.ZonedDateTime,
+  month: number,
+): Temporal.ZonedDateTime;
+export function setMonth(
+  date: Temporal.PlainDateTime,
+  month: number,
+): Temporal.PlainDateTime;
+export function setMonth(
+  date: Temporal.PlainDate,
+  month: number,
+): Temporal.PlainDate;
+export function setMonth(
+  date: AnyTemporalDate,
+  month: number,
+): AnyTemporalDate {
   return date.with({ month });
 }

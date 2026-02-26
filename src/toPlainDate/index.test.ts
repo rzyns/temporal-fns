@@ -11,7 +11,9 @@ describe("toPlainDate", () => {
   });
 
   it("converts ZonedDateTime to PlainDate", () => {
-    const zdt = Temporal.ZonedDateTime.from("2024-06-15T10:30:00[America/New_York]");
+    const zdt = Temporal.ZonedDateTime.from(
+      "2024-06-15T10:30:00[America/New_York]",
+    );
     const result = toPlainDate(zdt);
     expect(result instanceof Temporal.PlainDate).toBe(true);
     expect(result.year).toBe(2024);

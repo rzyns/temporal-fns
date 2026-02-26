@@ -25,8 +25,12 @@ describe("differenceInMilliseconds", () => {
   });
 
   it("works with ZonedDateTime inputs", () => {
-    const left = Temporal.ZonedDateTime.from("2024-01-15T14:00:01[America/New_York]");
-    const right = Temporal.ZonedDateTime.from("2024-01-15T14:00:00[America/New_York]");
+    const left = Temporal.ZonedDateTime.from(
+      "2024-01-15T14:00:01[America/New_York]",
+    );
+    const right = Temporal.ZonedDateTime.from(
+      "2024-01-15T14:00:00[America/New_York]",
+    );
     expect(differenceInMilliseconds(left, right)).toBe(1000);
   });
 });

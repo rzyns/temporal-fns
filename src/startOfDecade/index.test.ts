@@ -14,7 +14,9 @@ describe("startOfDecade", () => {
   });
 
   it("returns start of decade for ZonedDateTime", () => {
-    const zdt = Temporal.ZonedDateTime.from("2024-06-15T14:30:00[America/New_York]");
+    const zdt = Temporal.ZonedDateTime.from(
+      "2024-06-15T14:30:00[America/New_York]",
+    );
     const result = startOfDecade(zdt);
     expect(result.year).toBe(2020);
     expect(result.month).toBe(1);

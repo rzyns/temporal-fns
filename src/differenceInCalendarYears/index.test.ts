@@ -26,8 +26,12 @@ describe("differenceInCalendarYears", () => {
   });
 
   it("works with ZonedDateTime inputs", () => {
-    const left = Temporal.ZonedDateTime.from("2026-03-15T10:00:00[America/Chicago]");
-    const right = Temporal.ZonedDateTime.from("2024-03-15T10:00:00[America/Chicago]");
+    const left = Temporal.ZonedDateTime.from(
+      "2026-03-15T10:00:00[America/Chicago]",
+    );
+    const right = Temporal.ZonedDateTime.from(
+      "2024-03-15T10:00:00[America/Chicago]",
+    );
     expect(differenceInCalendarYears(left, right)).toBe(2);
   });
 });

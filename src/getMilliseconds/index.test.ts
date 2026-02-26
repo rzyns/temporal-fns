@@ -12,7 +12,9 @@ describe("getMilliseconds", () => {
   });
 
   it("returns the millisecond of a ZonedDateTime", () => {
-    const zdt = Temporal.ZonedDateTime.from("2024-06-15T23:59:59.999[America/New_York]");
+    const zdt = Temporal.ZonedDateTime.from(
+      "2024-06-15T23:59:59.999[America/New_York]",
+    );
     expect(getMilliseconds(zdt)).toBe(999);
   });
 

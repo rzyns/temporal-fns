@@ -8,7 +8,9 @@ describe("startOfHour", () => {
   });
 
   it("sets minutes and below to zero for ZonedDateTime", () => {
-    const zdt = Temporal.ZonedDateTime.from("2024-06-15T14:35:45[America/New_York]");
+    const zdt = Temporal.ZonedDateTime.from(
+      "2024-06-15T14:35:45[America/New_York]",
+    );
     const result = startOfHour(zdt);
     expect(result.hour).toBe(14);
     expect(result.minute).toBe(0);

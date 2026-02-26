@@ -14,7 +14,9 @@ describe("subHours", () => {
   });
 
   it("subtracts hours from a ZonedDateTime", () => {
-    const zdt = Temporal.ZonedDateTime.from("2024-01-15T18:00:00[America/New_York]");
+    const zdt = Temporal.ZonedDateTime.from(
+      "2024-01-15T18:00:00[America/New_York]",
+    );
     const result = subHours(zdt, 8);
     expect(result.hour).toBe(10);
   });

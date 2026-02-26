@@ -1,6 +1,10 @@
-import type { AnyTemporalDate, TemporalInterval, WeekOptions } from "../types.js";
 import { compareAsc } from "../compareAsc/index.js";
 import { startOfWeek } from "../startOfWeek/index.js";
+import type {
+  AnyTemporalDate,
+  TemporalInterval,
+  WeekOptions,
+} from "../types.js";
 
 export function eachWeekOfInterval<T extends AnyTemporalDate>(
   interval: TemporalInterval<T>,

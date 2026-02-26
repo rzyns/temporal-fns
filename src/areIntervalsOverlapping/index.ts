@@ -1,5 +1,5 @@
-import type { AnyTemporalDate, TemporalInterval } from "../types.js";
 import { compareAsc } from "../compareAsc/index.js";
+import type { AnyTemporalDate, TemporalInterval } from "../types.js";
 
 export function areIntervalsOverlapping<T extends AnyTemporalDate>(
   intervalA: TemporalInterval<T>,

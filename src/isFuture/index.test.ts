@@ -1,5 +1,5 @@
-import { isFuture } from "./index.js";
 import type { ClockProvider } from "../types.js";
+import { isFuture } from "./index.js";
 
 const mockClock: ClockProvider = {
   instant: () => Temporal.Instant.from("2024-06-15T12:00:00Z"),

@@ -22,7 +22,9 @@ describe("getDaysInMonth", () => {
   });
 
   it("works with ZonedDateTime", () => {
-    const zdt = Temporal.ZonedDateTime.from("2024-03-15T10:30:00[America/New_York]");
+    const zdt = Temporal.ZonedDateTime.from(
+      "2024-03-15T10:30:00[America/New_York]",
+    );
     expect(getDaysInMonth(zdt)).toBe(31);
   });
 });

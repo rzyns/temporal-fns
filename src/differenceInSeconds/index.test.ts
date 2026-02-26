@@ -25,8 +25,12 @@ describe("differenceInSeconds", () => {
   });
 
   it("works with ZonedDateTime inputs using epoch-based calculation", () => {
-    const left = Temporal.ZonedDateTime.from("2024-01-15T14:01:00[Europe/Berlin]");
-    const right = Temporal.ZonedDateTime.from("2024-01-15T14:00:00[Europe/Berlin]");
+    const left = Temporal.ZonedDateTime.from(
+      "2024-01-15T14:01:00[Europe/Berlin]",
+    );
+    const right = Temporal.ZonedDateTime.from(
+      "2024-01-15T14:00:00[Europe/Berlin]",
+    );
     expect(differenceInSeconds(left, right)).toBe(60);
   });
 });
