@@ -13,23 +13,50 @@ Inspired by [date-fns](https://date-fns.org/), `temporal-fns` provides the same 
 
 ## Requirements
 
-Temporal must be available natively or via polyfill:
+`temporal-fns` itself has no runtime dependencies — it expects `Temporal` to be available globally. Native support is still rolling out:
 
-| Environment | Native Temporal |
+| Environment | Status |
 |---|---|
-| Node.js 24+ | Yes |
-| Chrome 127+ | Yes |
-| Firefox 139+ | Yes |
-| Safari 18.4+ | Yes |
-| Bun 1.2+ | Yes |
-| Older runtimes | Use [@js-temporal/polyfill](https://github.com/js-temporal/temporal-polyfill) |
+| Firefox 139+ | ✅ Native (May 2025) |
+| Chrome 144+ | ✅ Native (January 2026) |
+| Node.js (any) | ⚠️ Behind `--harmony-temporal` flag; no unflagged support yet |
+| Bun | ❌ Not yet implemented ([open issue](https://github.com/oven-sh/bun/issues/15853)) |
+| Safari | ❌ Not yet available natively |
+
+**For everything except Firefox 139+ and Chrome 144+, you need a polyfill.** The recommended option is [`temporal-polyfill`](https://github.com/nicolo-ribaudo/tc39-proposal-temporal-polyfill):
+
+```bash
+pnpm add temporal-polyfill
+# or
+npm install temporal-polyfill
+```
+
+Then import it once at your app's entry point:
+
+```typescript
+import "temporal-polyfill/global";
+```
+
+Or, if you prefer the TC39 team's official polyfill:
+
+```bash
+pnpm add @js-temporal/polyfill
+```
+
+```typescript
+import { Temporal } from "@js-temporal/polyfill";
+// make it global if needed:
+(globalThis as typeof globalThis & { Temporal: typeof Temporal }).Temporal = Temporal;
+```
+
+> **Temporal's proposal status:** Stage 3 as of early 2026. The spec is stable and the proposal is not expected to change significantly — it's in the implementation phase across runtimes.
 
 ## Installation
 
 ```bash
-npm install temporal-fns
+pnpm add temporal-fns temporal-polyfill
 # or
-pnpm add temporal-fns
+npm install temporal-fns temporal-polyfill
 ```
 
 ## Key differences from date-fns
