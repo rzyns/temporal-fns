@@ -19,6 +19,10 @@
     "format": "biome format --write .",
     "typecheck": "tsc --noEmit && tsc --project tsconfig.test.json --noEmit"
   },
+  "packageManager": "pnpm@10.30.1",
+  "engines": {
+    "node": ">=20"
+  },
   "devDependencies": {
     "@biomejs/biome": "^1.9.0",
     "@vitest/coverage-v8": "^3.0.0",
