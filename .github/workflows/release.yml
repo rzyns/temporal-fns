@@ -64,6 +64,17 @@ jobs:
       - name: Build
         run: pnpm build
 
+      - name: Set version from tag
+        # Strip 'v' prefix so v1.2.3 → 1.2.3, matching what will be published
+        run: |
+          TAG="${GITHUB_REF_NAME#v}"
+          pnpm version "$TAG" --no-git-tag-version --allow-same-version
+
+      - name: Pack
+        # Creates rzyns-temporal-fns-{version}.tgz — the exact file npm/pnpm
+        # can install directly via URL, no registry auth required.
+        run: pnpm pack
+
       - name: Create GitHub Release
         id: create_release
         uses: softprops/action-gh-release@v2
@@ -71,5 +82,6 @@ jobs:
           generate_release_notes: true
           draft: false
           prerelease: ${{ contains(github.ref_name, '-') }}
+          files: "*.tgz"
           # generates release notes from PRs merged since last tag
           # and marks anything like v1.0.0-beta.1 as a pre-release
