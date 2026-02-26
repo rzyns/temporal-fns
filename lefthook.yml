@@ -1,0 +1,12 @@
+pre-commit:
+  commands:
+    format:
+      # Auto-format staged files and re-stage them.
+      # Biome handles TS, JS, JSON, JSONC — covers everything in this repo.
+      glob: "*.{ts,js,json,jsonc}"
+      run: pnpm exec biome format --write {staged_files}
+      stage_fixed: true
+
+    lint:
+      glob: "*.{ts,js}"
+      run: pnpm exec biome check {staged_files}
