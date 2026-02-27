@@ -167,6 +167,7 @@ export * from "./subSeconds/index.js";
 export * from "./subWeeks/index.js";
 export * from "./subWorkingDays/index.js";
 export * from "./subYears/index.js";
+export * from "./toLocal/index.js";
 export * from "./toPlainDate/index.js";
 export * from "./toPlainDateTime/index.js";
 export * from "./toPlainTime/index.js";
