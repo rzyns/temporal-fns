@@ -2,6 +2,7 @@ export type {
     AnyTemporalDate,
     AnyTemporalDateTime,
     AnyTemporalInstant,
+    AnyTemporalComparable,
     AnyTemporalTime,
     TemporalInput,
     TemporalInterval,

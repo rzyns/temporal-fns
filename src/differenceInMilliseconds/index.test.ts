@@ -38,4 +38,27 @@ describe("differenceInMilliseconds", (it) => {
         );
         expect(differenceInMilliseconds(left, right)).toBe(1000);
     });
+
+    it("works with mixed Instant and ZonedDateTime", ({ expect }) => {
+        const instant = Temporal.Instant.from("2024-01-15T19:00:01Z");
+        const zdt = Temporal.ZonedDateTime.from(
+            "2024-01-15T14:00:00-05:00[America/New_York]",
+        );
+        // 14:00 EST = 19:00 UTC, so diff = 1000ms
+        expect(differenceInMilliseconds(instant, zdt)).toBe(1000);
+    });
+
+    it("throws TypeError for PlainDate input", ({ expect }) => {
+        const plain = Temporal.PlainDate.from("2024-01-15");
+        const instant = Temporal.Instant.from("2024-01-15T12:00:00Z");
+        expect(() => differenceInMilliseconds(plain, instant)).toThrow(
+            TypeError,
+        );
+    });
+
+    it("throws TypeError for PlainDateTime input", ({ expect }) => {
+        const pdt = Temporal.PlainDateTime.from("2024-01-15T12:00:00");
+        const instant = Temporal.Instant.from("2024-01-15T12:00:00Z");
+        expect(() => differenceInMilliseconds(pdt, instant)).toThrow(TypeError);
+    });
 });

@@ -20,6 +20,12 @@ export type AnyTemporalDateTime =
 export type AnyTemporalInstant = Temporal.Instant | Temporal.ZonedDateTime;
 
 /**
+ * Any Temporal type that has a defined temporal ordering.
+ * Includes both calendar-based dates and absolute instants.
+ */
+export type AnyTemporalComparable = AnyTemporalDate | Temporal.Instant;
+
+/**
  * Any Temporal type that carries a time component.
  */
 export type AnyTemporalTime =

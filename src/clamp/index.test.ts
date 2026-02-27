@@ -63,4 +63,31 @@ describe("clamp", (it) => {
         };
         expect(clamp(date, interval).toString()).toBe("2024-01-15T17:00:00");
     });
+
+    it("clamps Instant within an Instant interval", ({ expect }) => {
+        const date = Temporal.Instant.from("2024-01-15T12:00:00Z");
+        const interval = {
+            start: Temporal.Instant.from("2024-01-01T00:00:00Z"),
+            end: Temporal.Instant.from("2024-01-31T23:59:59Z"),
+        };
+        expect(clamp(date, interval).toString()).toBe("2024-01-15T12:00:00Z");
+    });
+
+    it("clamps Instant to start when before interval", ({ expect }) => {
+        const date = Temporal.Instant.from("2023-12-01T00:00:00Z");
+        const interval = {
+            start: Temporal.Instant.from("2024-01-01T00:00:00Z"),
+            end: Temporal.Instant.from("2024-01-31T23:59:59Z"),
+        };
+        expect(clamp(date, interval).toString()).toBe("2024-01-01T00:00:00Z");
+    });
+
+    it("clamps Instant to end when after interval", ({ expect }) => {
+        const date = Temporal.Instant.from("2024-03-01T00:00:00Z");
+        const interval = {
+            start: Temporal.Instant.from("2024-01-01T00:00:00Z"),
+            end: Temporal.Instant.from("2024-01-31T23:59:59Z"),
+        };
+        expect(clamp(date, interval).toString()).toBe("2024-01-31T23:59:59Z");
+    });
 });

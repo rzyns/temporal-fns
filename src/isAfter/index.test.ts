@@ -39,4 +39,29 @@ describe("isAfter", (it) => {
         );
         expect(isAfter(date, dateToCompare)).toBe(true);
     });
+
+    it("works with Instant vs Instant", ({ expect }) => {
+        const date = Temporal.Instant.from("2024-06-20T12:00:00Z");
+        const dateToCompare = Temporal.Instant.from("2024-01-15T12:00:00Z");
+        expect(isAfter(date, dateToCompare)).toBe(true);
+    });
+
+    it("works with Instant vs ZonedDateTime", ({ expect }) => {
+        const instant = Temporal.Instant.from("2024-06-20T18:00:00Z");
+        const zdt = Temporal.ZonedDateTime.from("2024-06-20T12:00:00[UTC]");
+        // instant is 18:00 UTC, zdt is 12:00 UTC → after
+        expect(isAfter(instant, zdt)).toBe(true);
+    });
+
+    it("throws TypeError for Instant vs PlainDate", ({ expect }) => {
+        const instant = Temporal.Instant.from("2024-01-15T12:00:00Z");
+        const plain = Temporal.PlainDate.from("2024-01-15");
+        expect(() => isAfter(instant, plain)).toThrow(TypeError);
+    });
+
+    it("throws TypeError for Instant vs PlainDateTime", ({ expect }) => {
+        const instant = Temporal.Instant.from("2024-01-15T12:00:00Z");
+        const pdt = Temporal.PlainDateTime.from("2024-01-15T12:00:00");
+        expect(() => isAfter(instant, pdt)).toThrow(TypeError);
+    });
 });

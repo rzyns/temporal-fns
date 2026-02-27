@@ -49,4 +49,14 @@ describe("max", (it) => {
         expect(() => max([])).toThrow(TypeError);
         expect(() => max([])).toThrow("max requires at least one date");
     });
+
+    it("returns the latest Instant from an array", ({ expect }) => {
+        const dates = [
+            Temporal.Instant.from("2024-01-15T12:00:00Z"),
+            Temporal.Instant.from("2024-06-20T12:00:00Z"),
+            Temporal.Instant.from("2024-03-10T12:00:00Z"),
+        ];
+        const result = max(dates);
+        expect(result.toString()).toBe("2024-06-20T12:00:00Z");
+    });
 });

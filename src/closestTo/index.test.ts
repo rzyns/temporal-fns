@@ -49,4 +49,27 @@ describe("closestTo", (it) => {
         const result = closestTo(target, dates);
         expect(result?.toString()).toBe("2024-01-15");
     });
+
+    it("returns the closest Instant from an array", ({ expect }) => {
+        const target = Temporal.Instant.from("2024-01-15T12:00:00Z");
+        const dates = [
+            Temporal.Instant.from("2024-01-15T10:00:00Z"), // 2h before
+            Temporal.Instant.from("2024-01-15T11:30:00Z"), // 30min before
+            Temporal.Instant.from("2024-01-15T15:00:00Z"), // 3h after
+        ];
+        const result = closestTo(target, dates);
+        expect(result?.toString()).toBe("2024-01-15T11:30:00Z");
+    });
+
+    it("throws TypeError for Instant target with PlainDate array", ({
+        expect,
+    }) => {
+        const target = Temporal.Instant.from("2024-01-15T12:00:00Z");
+        const dates: Temporal.Instant[] = [
+            Temporal.PlainDate.from(
+                "2024-01-14",
+            ) as unknown as Temporal.Instant,
+        ];
+        expect(() => closestTo(target, dates)).toThrow(TypeError);
+    });
 });
