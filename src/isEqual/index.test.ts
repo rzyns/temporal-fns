@@ -53,4 +53,38 @@ describe("isEqual", (it) => {
         );
         expect(isEqual(date, dateToCompare)).toBe(true);
     });
+
+    it("returns true when Instants are equal", ({ expect }) => {
+        const date = Temporal.Instant.from("2024-01-15T12:00:00Z");
+        const dateToCompare = Temporal.Instant.from("2024-01-15T12:00:00Z");
+        expect(isEqual(date, dateToCompare)).toBe(true);
+    });
+
+    it("returns false when Instants are different", ({ expect }) => {
+        const date = Temporal.Instant.from("2024-01-15T12:00:00Z");
+        const dateToCompare = Temporal.Instant.from("2024-01-15T13:00:00Z");
+        expect(isEqual(date, dateToCompare)).toBe(false);
+    });
+
+    it("compares Instant with ZonedDateTime representing the same moment", ({
+        expect,
+    }) => {
+        const instant = Temporal.Instant.from("2024-01-15T17:00:00Z");
+        const zdt = Temporal.ZonedDateTime.from(
+            "2024-01-15T12:00:00-05:00[America/New_York]",
+        );
+        expect(isEqual(instant, zdt)).toBe(true);
+    });
+
+    it("throws TypeError for Instant vs PlainDate", ({ expect }) => {
+        const instant = Temporal.Instant.from("2024-01-15T12:00:00Z");
+        const plain = Temporal.PlainDate.from("2024-01-15");
+        expect(() => isEqual(instant, plain)).toThrow(TypeError);
+    });
+
+    it("throws TypeError for Instant vs PlainDateTime", ({ expect }) => {
+        const instant = Temporal.Instant.from("2024-01-15T12:00:00Z");
+        const pdt = Temporal.PlainDateTime.from("2024-01-15T12:00:00");
+        expect(() => isEqual(instant, pdt)).toThrow(TypeError);
+    });
 });

@@ -35,4 +35,22 @@ describe("compareDesc", (it) => {
         );
         expect(compareDesc(left, right)).toBe(-1);
     });
+
+    it("works with Instant", ({ expect }) => {
+        const left = Temporal.Instant.from("2024-01-15T12:00:00Z");
+        const right = Temporal.Instant.from("2024-06-20T12:00:00Z");
+        expect(compareDesc(left, right)).toBe(1);
+    });
+
+    it("works with Instant vs ZonedDateTime", ({ expect }) => {
+        const instant = Temporal.Instant.from("2024-06-20T12:00:00Z");
+        const zdt = Temporal.ZonedDateTime.from("2024-01-15T12:00:00[UTC]");
+        expect(compareDesc(instant, zdt)).toBe(-1);
+    });
+
+    it("throws TypeError for Instant vs PlainDate", ({ expect }) => {
+        const instant = Temporal.Instant.from("2024-01-15T12:00:00Z");
+        const plain = Temporal.PlainDate.from("2024-01-15");
+        expect(() => compareDesc(instant, plain)).toThrow(TypeError);
+    });
 });
