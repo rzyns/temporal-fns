@@ -1,7 +1,8 @@
+import { describe } from "vitest";
 import { closestTo } from "./index.js";
 
-describe("closestTo", () => {
-    it("returns the closest date from an array", () => {
+describe("closestTo", (it) => {
+    it("returns the closest date from an array", ({ expect }) => {
         const target = Temporal.PlainDate.from("2024-01-15");
         const dates = [
             Temporal.PlainDate.from("2024-01-10"),
@@ -12,7 +13,7 @@ describe("closestTo", () => {
         expect(result?.toString()).toBe("2024-01-14");
     });
 
-    it("returns the first match when equidistant", () => {
+    it("returns the first match when equidistant", ({ expect }) => {
         const target = Temporal.PlainDate.from("2024-01-15");
         const dates = [
             Temporal.PlainDate.from("2024-01-13"), // 2 days before
@@ -22,13 +23,13 @@ describe("closestTo", () => {
         expect(result?.toString()).toBe("2024-01-13");
     });
 
-    it("returns undefined for an empty array", () => {
+    it("returns undefined for an empty array", ({ expect }) => {
         const target = Temporal.PlainDate.from("2024-01-15");
         const result = closestTo(target, []);
         expect(result).toBeUndefined();
     });
 
-    it("works with ZonedDateTime", () => {
+    it("works with ZonedDateTime", ({ expect }) => {
         const target = Temporal.ZonedDateTime.from("2024-01-15T12:00:00[UTC]");
         const dates = [
             Temporal.ZonedDateTime.from("2024-01-10T12:00:00[UTC]"),
@@ -38,7 +39,7 @@ describe("closestTo", () => {
         expect(result?.day).toBe(16);
     });
 
-    it("returns the exact match when present", () => {
+    it("returns the exact match when present", ({ expect }) => {
         const target = Temporal.PlainDate.from("2024-01-15");
         const dates = [
             Temporal.PlainDate.from("2024-01-10"),

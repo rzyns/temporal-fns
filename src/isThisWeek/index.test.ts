@@ -1,3 +1,4 @@
+import { describe } from "vitest";
 import type { ClockProvider } from "../types.js";
 import { isThisWeek } from "./index.js";
 
@@ -12,33 +13,33 @@ const mockClock: ClockProvider = {
     timeZoneId: () => "UTC",
 };
 
-describe("isThisWeek", () => {
-    it("returns true for a date in the same week", () => {
+describe("isThisWeek", (it) => {
+    it("returns true for a date in the same week", ({ expect }) => {
         const date = Temporal.ZonedDateTime.from("2024-06-10T08:00:00[UTC]"); // Monday
         expect(isThisWeek(date, { clock: mockClock })).toBe(true);
     });
 
-    it("returns true for the same day", () => {
+    it("returns true for the same day", ({ expect }) => {
         const date = Temporal.ZonedDateTime.from("2024-06-15T20:00:00[UTC]"); // Saturday
         expect(isThisWeek(date, { clock: mockClock })).toBe(true);
     });
 
-    it("returns true for Sunday of the same week", () => {
+    it("returns true for Sunday of the same week", ({ expect }) => {
         const date = Temporal.ZonedDateTime.from("2024-06-16T00:00:00[UTC]"); // Sunday
         expect(isThisWeek(date, { clock: mockClock })).toBe(true);
     });
 
-    it("returns false for a date in the previous week", () => {
+    it("returns false for a date in the previous week", ({ expect }) => {
         const date = Temporal.ZonedDateTime.from("2024-06-09T23:59:59[UTC]"); // Previous Sunday
         expect(isThisWeek(date, { clock: mockClock })).toBe(false);
     });
 
-    it("returns false for a date in the next week", () => {
+    it("returns false for a date in the next week", ({ expect }) => {
         const date = Temporal.ZonedDateTime.from("2024-06-17T00:00:00[UTC]"); // Next Monday
         expect(isThisWeek(date, { clock: mockClock })).toBe(false);
     });
 
-    it("respects weekStartsOn option", () => {
+    it("respects weekStartsOn option", ({ expect }) => {
         // With Sunday as week start, June 15 (Sat) and June 9 (Sun) are in different weeks
         // June 9 (Sun) starts a week: June 9-15. June 15 is still in that week.
         const date = Temporal.ZonedDateTime.from("2024-06-09T12:00:00[UTC]");

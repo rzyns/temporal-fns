@@ -1,7 +1,8 @@
+import { describe } from "vitest";
 import { sub } from "./index.js";
 
-describe("sub", () => {
-    it("subtracts a Duration from a PlainDate", () => {
+describe("sub", (it) => {
+    it("subtracts a Duration from a PlainDate", ({ expect }) => {
         const date = Temporal.PlainDate.from("2025-03-18");
         const duration = Temporal.Duration.from({
             years: 1,
@@ -12,13 +13,13 @@ describe("sub", () => {
         expect(result.toString()).toBe("2024-01-15");
     });
 
-    it("subtracts a DurationLike from a PlainDateTime", () => {
+    it("subtracts a DurationLike from a PlainDateTime", ({ expect }) => {
         const dt = Temporal.PlainDateTime.from("2024-01-20T13:30:00");
         const result = sub(dt, { days: 5, hours: 3, minutes: 30 });
         expect(result.toString()).toBe("2024-01-15T10:00:00");
     });
 
-    it("subtracts a Duration from a ZonedDateTime", () => {
+    it("subtracts a Duration from a ZonedDateTime", ({ expect }) => {
         const zdt = Temporal.ZonedDateTime.from("2024-07-25T10:00:00[UTC]");
         const duration = Temporal.Duration.from({ months: 6, days: 10 });
         const result = sub(zdt, duration);
@@ -26,13 +27,15 @@ describe("sub", () => {
         expect(result.day).toBe(15);
     });
 
-    it("subtracts a DurationLike with only days from a PlainDate", () => {
+    it("subtracts a DurationLike with only days from a PlainDate", ({
+        expect,
+    }) => {
         const date = Temporal.PlainDate.from("2025-01-01");
         const result = sub(date, { days: 7 });
         expect(result.toString()).toBe("2024-12-25");
     });
 
-    it("subtracts a complex duration from PlainDateTime", () => {
+    it("subtracts a complex duration from PlainDateTime", ({ expect }) => {
         const dt = Temporal.PlainDateTime.from("2025-07-16T13:01:01");
         const duration = Temporal.Duration.from({
             years: 1,

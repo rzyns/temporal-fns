@@ -1,27 +1,30 @@
+import { describe } from "vitest";
 import { endOfWeek } from "./index.js";
 
-describe("endOfWeek", () => {
-    it("returns Sunday for a Wednesday PlainDate (default weekStartsOn=1)", () => {
+describe("endOfWeek", (it) => {
+    it("returns Sunday for a Wednesday PlainDate (default weekStartsOn=1)", ({
+        expect,
+    }) => {
         // 2024-06-12 is Wednesday
         const date = Temporal.PlainDate.from("2024-06-12");
         const result = endOfWeek(date);
         expect(result.toString()).toBe("2024-06-16"); // Sunday
     });
 
-    it("returns Saturday when weekStartsOn=7", () => {
+    it("returns Saturday when weekStartsOn=7", ({ expect }) => {
         // 2024-06-12 is Wednesday
         const date = Temporal.PlainDate.from("2024-06-12");
         const result = endOfWeek(date, { weekStartsOn: 7 });
         expect(result.toString()).toBe("2024-06-15"); // Saturday
     });
 
-    it("sets time to end of day for PlainDateTime", () => {
+    it("sets time to end of day for PlainDateTime", ({ expect }) => {
         const dt = Temporal.PlainDateTime.from("2024-06-12T14:30:00");
         const result = endOfWeek(dt);
         expect(result.toString()).toBe("2024-06-16T23:59:59.999999999");
     });
 
-    it("sets time to end of day for ZonedDateTime", () => {
+    it("sets time to end of day for ZonedDateTime", ({ expect }) => {
         const zdt = Temporal.ZonedDateTime.from(
             "2024-06-12T14:30:00[America/New_York]",
         );

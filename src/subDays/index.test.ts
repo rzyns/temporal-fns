@@ -1,19 +1,20 @@
+import { describe } from "vitest";
 import { subDays } from "./index.js";
 
-describe("subDays", () => {
-    it("subtracts days from a PlainDate", () => {
+describe("subDays", (it) => {
+    it("subtracts days from a PlainDate", ({ expect }) => {
         const date = Temporal.PlainDate.from("2024-01-15");
         const result = subDays(date, 10);
         expect(result.toString()).toBe("2024-01-05");
     });
 
-    it("subtracts days from a PlainDateTime", () => {
+    it("subtracts days from a PlainDateTime", ({ expect }) => {
         const dt = Temporal.PlainDateTime.from("2024-01-15T10:30:00");
         const result = subDays(dt, 5);
         expect(result.toString()).toBe("2024-01-10T10:30:00");
     });
 
-    it("subtracts days from a ZonedDateTime", () => {
+    it("subtracts days from a ZonedDateTime", ({ expect }) => {
         const zdt = Temporal.ZonedDateTime.from(
             "2024-01-15T10:30:00[America/New_York]",
         );
@@ -21,7 +22,7 @@ describe("subDays", () => {
         expect(result.day).toBe(12);
     });
 
-    it("crosses month boundaries backwards", () => {
+    it("crosses month boundaries backwards", ({ expect }) => {
         const date = Temporal.PlainDate.from("2024-02-05");
         const result = subDays(date, 10);
         expect(result.toString()).toBe("2024-01-26");

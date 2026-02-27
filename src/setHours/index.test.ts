@@ -1,13 +1,16 @@
+import { describe } from "vitest";
 import { setHours } from "./index.js";
 
-describe("setHours", () => {
-    it("sets the hours of a PlainDateTime", () => {
+describe("setHours", (it) => {
+    it("sets the hours of a PlainDateTime", ({ expect }) => {
         const dt = Temporal.PlainDateTime.from("2024-06-15T10:30:00");
         const result = setHours(dt, 0);
         expect(result.toString()).toBe("2024-06-15T00:30:00");
     });
 
-    it("sets the hours of a ZonedDateTime and preserves timezone", () => {
+    it("sets the hours of a ZonedDateTime and preserves timezone", ({
+        expect,
+    }) => {
         const zdt = Temporal.ZonedDateTime.from(
             "2024-06-15T10:30:00[America/New_York]",
         );
@@ -18,7 +21,7 @@ describe("setHours", () => {
         expect(result.timeZoneId).toBe("America/New_York");
     });
 
-    it("preserves other time components", () => {
+    it("preserves other time components", ({ expect }) => {
         const dt = Temporal.PlainDateTime.from("2024-06-15T10:30:45.123456789");
         const result = setHours(dt, 15);
         expect(result.hour).toBe(15);
@@ -29,14 +32,14 @@ describe("setHours", () => {
         expect(result.nanosecond).toBe(789);
     });
 
-    it("sets hours to midnight", () => {
+    it("sets hours to midnight", ({ expect }) => {
         const dt = Temporal.PlainDateTime.from("2024-06-15T14:30:00");
         const result = setHours(dt, 0);
         expect(result.hour).toBe(0);
         expect(result.day).toBe(15);
     });
 
-    it("sets hours to 23", () => {
+    it("sets hours to 23", ({ expect }) => {
         const dt = Temporal.PlainDateTime.from("2024-06-15T00:00:00");
         const result = setHours(dt, 23);
         expect(result.hour).toBe(23);

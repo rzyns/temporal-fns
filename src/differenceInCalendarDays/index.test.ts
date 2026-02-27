@@ -1,36 +1,41 @@
+import { describe } from "vitest";
 import { differenceInCalendarDays } from "./index.js";
 
-describe("differenceInCalendarDays", () => {
-    it("returns the number of calendar days between two PlainDates", () => {
+describe("differenceInCalendarDays", (it) => {
+    it("returns the number of calendar days between two PlainDates", ({
+        expect,
+    }) => {
         const left = Temporal.PlainDate.from("2024-01-15");
         const right = Temporal.PlainDate.from("2024-01-10");
         expect(differenceInCalendarDays(left, right)).toBe(5);
     });
 
-    it("returns a negative number when dateLeft is before dateRight", () => {
+    it("returns a negative number when dateLeft is before dateRight", ({
+        expect,
+    }) => {
         const left = Temporal.PlainDate.from("2024-01-10");
         const right = Temporal.PlainDate.from("2024-01-15");
         expect(differenceInCalendarDays(left, right)).toBe(-5);
     });
 
-    it("returns 0 when both dates are the same", () => {
+    it("returns 0 when both dates are the same", ({ expect }) => {
         const date = Temporal.PlainDate.from("2024-06-15");
         expect(differenceInCalendarDays(date, date)).toBe(0);
     });
 
-    it("handles cross-month boundaries", () => {
+    it("handles cross-month boundaries", ({ expect }) => {
         const left = Temporal.PlainDate.from("2024-02-02");
         const right = Temporal.PlainDate.from("2024-01-28");
         expect(differenceInCalendarDays(left, right)).toBe(5);
     });
 
-    it("works with PlainDateTime inputs", () => {
+    it("works with PlainDateTime inputs", ({ expect }) => {
         const left = Temporal.PlainDateTime.from("2024-03-15T14:30:00");
         const right = Temporal.PlainDateTime.from("2024-03-10T08:00:00");
         expect(differenceInCalendarDays(left, right)).toBe(5);
     });
 
-    it("works with ZonedDateTime inputs", () => {
+    it("works with ZonedDateTime inputs", ({ expect }) => {
         const left = Temporal.ZonedDateTime.from(
             "2024-03-15T10:00:00[America/New_York]",
         );

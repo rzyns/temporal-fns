@@ -1,34 +1,37 @@
+import { describe } from "vitest";
 import { startOfWeek } from "./index.js";
 
-describe("startOfWeek", () => {
-    it("returns Monday for a Wednesday PlainDate (default weekStartsOn=1)", () => {
+describe("startOfWeek", (it) => {
+    it("returns Monday for a Wednesday PlainDate (default weekStartsOn=1)", ({
+        expect,
+    }) => {
         // 2024-06-12 is Wednesday (dayOfWeek=3)
         const date = Temporal.PlainDate.from("2024-06-12");
         const result = startOfWeek(date);
         expect(result.toString()).toBe("2024-06-10"); // Monday
     });
 
-    it("returns Sunday when weekStartsOn=7", () => {
+    it("returns Sunday when weekStartsOn=7", ({ expect }) => {
         // 2024-06-12 is Wednesday
         const date = Temporal.PlainDate.from("2024-06-12");
         const result = startOfWeek(date, { weekStartsOn: 7 });
         expect(result.toString()).toBe("2024-06-09"); // Sunday
     });
 
-    it("returns same day if already at week start", () => {
+    it("returns same day if already at week start", ({ expect }) => {
         // 2024-06-10 is Monday
         const date = Temporal.PlainDate.from("2024-06-10");
         const result = startOfWeek(date);
         expect(result.toString()).toBe("2024-06-10");
     });
 
-    it("sets time to midnight for PlainDateTime", () => {
+    it("sets time to midnight for PlainDateTime", ({ expect }) => {
         const dt = Temporal.PlainDateTime.from("2024-06-12T14:30:00");
         const result = startOfWeek(dt);
         expect(result.toString()).toBe("2024-06-10T00:00:00");
     });
 
-    it("sets time to midnight for ZonedDateTime", () => {
+    it("sets time to midnight for ZonedDateTime", ({ expect }) => {
         const zdt = Temporal.ZonedDateTime.from(
             "2024-06-12T14:30:00[America/New_York]",
         );

@@ -1,13 +1,14 @@
+import { describe } from "vitest";
 import { endOfMinute } from "./index.js";
 
-describe("endOfMinute", () => {
-    it("sets to end of minute for PlainDateTime", () => {
+describe("endOfMinute", (it) => {
+    it("sets to end of minute for PlainDateTime", ({ expect }) => {
         const dt = Temporal.PlainDateTime.from("2024-06-15T14:35:10");
         const result = endOfMinute(dt);
         expect(result.toString()).toBe("2024-06-15T14:35:59.999999999");
     });
 
-    it("sets to end of minute for ZonedDateTime", () => {
+    it("sets to end of minute for ZonedDateTime", ({ expect }) => {
         const zdt = Temporal.ZonedDateTime.from(
             "2024-06-15T14:35:10[America/New_York]",
         );
@@ -19,7 +20,7 @@ describe("endOfMinute", () => {
         expect(result.nanosecond).toBe(999);
     });
 
-    it("handles already end-of-minute", () => {
+    it("handles already end-of-minute", ({ expect }) => {
         const dt = Temporal.PlainDateTime.from("2024-06-15T14:35:59.999999999");
         const result = endOfMinute(dt);
         expect(result.toString()).toBe("2024-06-15T14:35:59.999999999");

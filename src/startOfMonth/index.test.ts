@@ -1,19 +1,20 @@
+import { describe } from "vitest";
 import { startOfMonth } from "./index.js";
 
-describe("startOfMonth", () => {
-    it("sets day to 1 for PlainDate", () => {
+describe("startOfMonth", (it) => {
+    it("sets day to 1 for PlainDate", ({ expect }) => {
         const date = Temporal.PlainDate.from("2024-06-15");
         const result = startOfMonth(date);
         expect(result.toString()).toBe("2024-06-01");
     });
 
-    it("sets day to 1 and time to midnight for PlainDateTime", () => {
+    it("sets day to 1 and time to midnight for PlainDateTime", ({ expect }) => {
         const dt = Temporal.PlainDateTime.from("2024-06-15T14:30:00");
         const result = startOfMonth(dt);
         expect(result.toString()).toBe("2024-06-01T00:00:00");
     });
 
-    it("sets day to 1 and time to midnight for ZonedDateTime", () => {
+    it("sets day to 1 and time to midnight for ZonedDateTime", ({ expect }) => {
         const zdt = Temporal.ZonedDateTime.from(
             "2024-06-15T14:30:00[America/New_York]",
         );
@@ -23,7 +24,7 @@ describe("startOfMonth", () => {
         expect(result.minute).toBe(0);
     });
 
-    it("handles already first day of month", () => {
+    it("handles already first day of month", ({ expect }) => {
         const date = Temporal.PlainDate.from("2024-06-01");
         const result = startOfMonth(date);
         expect(result.toString()).toBe("2024-06-01");

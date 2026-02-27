@@ -1,7 +1,8 @@
+import { describe } from "vitest";
 import { closestIndexTo } from "./index.js";
 
-describe("closestIndexTo", () => {
-    it("returns the index of the closest date", () => {
+describe("closestIndexTo", (it) => {
+    it("returns the index of the closest date", ({ expect }) => {
         const target = Temporal.PlainDate.from("2024-01-15");
         const dates = [
             Temporal.PlainDate.from("2024-01-10"),
@@ -12,13 +13,13 @@ describe("closestIndexTo", () => {
         expect(result).toBe(1);
     });
 
-    it("returns -1 for an empty array", () => {
+    it("returns -1 for an empty array", ({ expect }) => {
         const target = Temporal.PlainDate.from("2024-01-15");
         const result = closestIndexTo(target, []);
         expect(result).toBe(-1);
     });
 
-    it("returns the first index when equidistant", () => {
+    it("returns the first index when equidistant", ({ expect }) => {
         const target = Temporal.PlainDate.from("2024-01-15");
         const dates = [
             Temporal.PlainDate.from("2024-01-13"), // 2 days before
@@ -28,7 +29,9 @@ describe("closestIndexTo", () => {
         expect(result).toBe(0);
     });
 
-    it("works with multiple dates and picks the correct index", () => {
+    it("works with multiple dates and picks the correct index", ({
+        expect,
+    }) => {
         const target = Temporal.PlainDate.from("2024-06-15");
         const dates = [
             Temporal.PlainDate.from("2024-01-01"),
@@ -41,7 +44,7 @@ describe("closestIndexTo", () => {
         expect(result).toBe(2); // 2024-06-10 is closest (5 days away)
     });
 
-    it("works with ZonedDateTime", () => {
+    it("works with ZonedDateTime", ({ expect }) => {
         const target = Temporal.ZonedDateTime.from("2024-01-15T12:00:00[UTC]");
         const dates = [
             Temporal.ZonedDateTime.from("2024-01-10T12:00:00[UTC]"),

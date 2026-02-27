@@ -1,7 +1,8 @@
+import { describe } from "vitest";
 import { toPlainDate } from "./index.js";
 
-describe("toPlainDate", () => {
-    it("converts PlainDateTime to PlainDate", () => {
+describe("toPlainDate", (it) => {
+    it("converts PlainDateTime to PlainDate", ({ expect }) => {
         const pdt = Temporal.PlainDateTime.from("2024-06-15T10:30:00");
         const result = toPlainDate(pdt);
         expect(result instanceof Temporal.PlainDate).toBe(true);
@@ -10,7 +11,7 @@ describe("toPlainDate", () => {
         expect(result.day).toBe(15);
     });
 
-    it("converts ZonedDateTime to PlainDate", () => {
+    it("converts ZonedDateTime to PlainDate", ({ expect }) => {
         const zdt = Temporal.ZonedDateTime.from(
             "2024-06-15T10:30:00[America/New_York]",
         );
@@ -21,13 +22,13 @@ describe("toPlainDate", () => {
         expect(result.day).toBe(15);
     });
 
-    it("strips time information", () => {
+    it("strips time information", ({ expect }) => {
         const pdt = Temporal.PlainDateTime.from("2024-12-31T23:59:59.999");
         const result = toPlainDate(pdt);
         expect(result.toString()).toBe("2024-12-31");
     });
 
-    it("preserves calendar", () => {
+    it("preserves calendar", ({ expect }) => {
         const pdt = Temporal.PlainDateTime.from("2024-06-15T10:30:00");
         const result = toPlainDate(pdt);
         expect(result.calendarId).toBe("iso8601");

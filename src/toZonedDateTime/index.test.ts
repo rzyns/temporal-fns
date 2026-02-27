@@ -1,7 +1,8 @@
+import { describe } from "vitest";
 import { toZonedDateTime } from "./index.js";
 
-describe("toZonedDateTime", () => {
-    it("converts PlainDateTime to ZonedDateTime", () => {
+describe("toZonedDateTime", (it) => {
+    it("converts PlainDateTime to ZonedDateTime", ({ expect }) => {
         const pdt = Temporal.PlainDateTime.from("2024-06-15T10:30:00");
         const result = toZonedDateTime(pdt, "America/New_York");
         expect(result.timeZoneId).toBe("America/New_York");
@@ -9,7 +10,7 @@ describe("toZonedDateTime", () => {
         expect(result.day).toBe(15);
     });
 
-    it("uses the specified timezone", () => {
+    it("uses the specified timezone", ({ expect }) => {
         const pdt = Temporal.PlainDateTime.from("2024-06-15T10:30:00");
         const result = toZonedDateTime(pdt, "Asia/Tokyo");
         expect(result.timeZoneId).toBe("Asia/Tokyo");
@@ -17,7 +18,7 @@ describe("toZonedDateTime", () => {
         expect(result.month).toBe(6);
     });
 
-    it("handles disambiguation option", () => {
+    it("handles disambiguation option", ({ expect }) => {
         const pdt = Temporal.PlainDateTime.from("2024-06-15T10:30:00");
         const result = toZonedDateTime(pdt, "UTC", {
             disambiguation: "earlier",
@@ -26,7 +27,7 @@ describe("toZonedDateTime", () => {
         expect(result.hour).toBe(10);
     });
 
-    it("defaults to compatible disambiguation", () => {
+    it("defaults to compatible disambiguation", ({ expect }) => {
         const pdt = Temporal.PlainDateTime.from("2024-03-10T02:30:00");
         // During spring-forward in US/Eastern, 2:30 AM doesn't exist
         // "compatible" should resolve without throwing
@@ -34,7 +35,7 @@ describe("toZonedDateTime", () => {
         expect(result.timeZoneId).toBe("America/New_York");
     });
 
-    it("preserves date and time components", () => {
+    it("preserves date and time components", ({ expect }) => {
         const pdt = Temporal.PlainDateTime.from("2024-12-25T23:59:59");
         const result = toZonedDateTime(pdt, "Europe/London");
         expect(result.year).toBe(2024);

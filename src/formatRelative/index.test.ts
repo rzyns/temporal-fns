@@ -1,6 +1,7 @@
+import { describe } from "vitest";
 import { formatRelative } from "./index.js";
 
-describe("formatRelative", () => {
+describe("formatRelative", (it) => {
     const mockClock = {
         instant: () => Temporal.Instant.from("2024-06-15T12:00:00Z"),
         zonedDateTimeISO: (tz?: string) =>
@@ -11,19 +12,19 @@ describe("formatRelative", () => {
         timeZoneId: () => "UTC",
     };
 
-    it("formats a date in the future as relative", () => {
+    it("formats a date in the future as relative", ({ expect }) => {
         const future = Temporal.ZonedDateTime.from("2024-06-16T12:00:00[UTC]");
         const result = formatRelative(future, { clock: mockClock });
         expect(result).toContain("tomorrow");
     });
 
-    it("formats a date in the past as relative", () => {
+    it("formats a date in the past as relative", ({ expect }) => {
         const past = Temporal.ZonedDateTime.from("2024-06-14T12:00:00[UTC]");
         const result = formatRelative(past, { clock: mockClock });
         expect(result).toContain("yesterday");
     });
 
-    it("formats hours difference", () => {
+    it("formats hours difference", ({ expect }) => {
         const future = Temporal.ZonedDateTime.from("2024-06-15T15:00:00[UTC]");
         const result = formatRelative(future, { clock: mockClock });
         expect(result).toContain("3");

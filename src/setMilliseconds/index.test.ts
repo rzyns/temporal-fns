@@ -1,14 +1,17 @@
+import { describe } from "vitest";
 import { setMilliseconds } from "./index.js";
 
-describe("setMilliseconds", () => {
-    it("sets the milliseconds of a PlainDateTime", () => {
+describe("setMilliseconds", (it) => {
+    it("sets the milliseconds of a PlainDateTime", ({ expect }) => {
         const dt = Temporal.PlainDateTime.from("2024-06-15T10:30:45.123");
         const result = setMilliseconds(dt, 0);
         expect(result.millisecond).toBe(0);
         expect(result.second).toBe(45);
     });
 
-    it("sets the milliseconds of a ZonedDateTime and preserves timezone", () => {
+    it("sets the milliseconds of a ZonedDateTime and preserves timezone", ({
+        expect,
+    }) => {
         const zdt = Temporal.ZonedDateTime.from(
             "2024-06-15T10:30:00[America/New_York]",
         );
@@ -19,7 +22,7 @@ describe("setMilliseconds", () => {
         expect(result.timeZoneId).toBe("America/New_York");
     });
 
-    it("preserves other time components", () => {
+    it("preserves other time components", ({ expect }) => {
         const dt = Temporal.PlainDateTime.from("2024-06-15T10:30:45.123456789");
         const result = setMilliseconds(dt, 500);
         expect(result.millisecond).toBe(500);
@@ -30,13 +33,13 @@ describe("setMilliseconds", () => {
         expect(result.nanosecond).toBe(789);
     });
 
-    it("sets milliseconds to 0", () => {
+    it("sets milliseconds to 0", ({ expect }) => {
         const dt = Temporal.PlainDateTime.from("2024-06-15T10:30:45.999");
         const result = setMilliseconds(dt, 0);
         expect(result.millisecond).toBe(0);
     });
 
-    it("preserves date components", () => {
+    it("preserves date components", ({ expect }) => {
         const zdt = Temporal.ZonedDateTime.from(
             "2024-12-31T23:59:59.999[Europe/London]",
         );

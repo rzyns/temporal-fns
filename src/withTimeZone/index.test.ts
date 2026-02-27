@@ -1,13 +1,14 @@
+import { describe } from "vitest";
 import { withTimeZone } from "./index.js";
 
-describe("withTimeZone", () => {
-    it("changes the timezone of a ZonedDateTime", () => {
+describe("withTimeZone", (it) => {
+    it("changes the timezone of a ZonedDateTime", ({ expect }) => {
         const zdt = Temporal.ZonedDateTime.from("2024-06-15T10:30:00[UTC]");
         const result = withTimeZone(zdt, "America/New_York");
         expect(result.timeZoneId).toBe("America/New_York");
     });
 
-    it("preserves the same instant in time", () => {
+    it("preserves the same instant in time", ({ expect }) => {
         const zdt = Temporal.ZonedDateTime.from("2024-06-15T10:30:00[UTC]");
         const result = withTimeZone(zdt, "America/New_York");
         // Same instant, different wall-clock time
@@ -15,7 +16,7 @@ describe("withTimeZone", () => {
         expect(result.hour).toBe(6); // UTC-4 during summer
     });
 
-    it("converts between non-UTC timezones", () => {
+    it("converts between non-UTC timezones", ({ expect }) => {
         const zdt = Temporal.ZonedDateTime.from(
             "2024-06-15T10:00:00[America/New_York]",
         );
@@ -24,7 +25,7 @@ describe("withTimeZone", () => {
         expect(result.epochMilliseconds).toBe(zdt.epochMilliseconds);
     });
 
-    it("handles same timezone (no-op)", () => {
+    it("handles same timezone (no-op)", ({ expect }) => {
         const zdt = Temporal.ZonedDateTime.from("2024-06-15T10:30:00[UTC]");
         const result = withTimeZone(zdt, "UTC");
         expect(result.timeZoneId).toBe("UTC");

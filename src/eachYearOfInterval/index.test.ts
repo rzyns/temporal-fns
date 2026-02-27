@@ -1,7 +1,8 @@
+import { describe } from "vitest";
 import { eachYearOfInterval } from "./index.js";
 
-describe("eachYearOfInterval", () => {
-    it("returns each year start in the interval", () => {
+describe("eachYearOfInterval", (it) => {
+    it("returns each year start in the interval", ({ expect }) => {
         const interval = {
             start: Temporal.PlainDate.from("2020-06-15"),
             end: Temporal.PlainDate.from("2024-03-10"),
@@ -16,7 +17,9 @@ describe("eachYearOfInterval", () => {
         ]);
     });
 
-    it("returns single year when start and end are in the same year", () => {
+    it("returns single year when start and end are in the same year", ({
+        expect,
+    }) => {
         const interval = {
             start: Temporal.PlainDate.from("2024-03-01"),
             end: Temporal.PlainDate.from("2024-09-30"),
@@ -26,7 +29,7 @@ describe("eachYearOfInterval", () => {
         expect(result[0].toString()).toBe("2024-01-01");
     });
 
-    it("returns empty array when start is after end", () => {
+    it("returns empty array when start is after end", ({ expect }) => {
         const interval = {
             start: Temporal.PlainDate.from("2025-01-01"),
             end: Temporal.PlainDate.from("2020-01-01"),
@@ -35,7 +38,7 @@ describe("eachYearOfInterval", () => {
         expect(result).toHaveLength(0);
     });
 
-    it("includes year whose start equals interval end", () => {
+    it("includes year whose start equals interval end", ({ expect }) => {
         const interval = {
             start: Temporal.PlainDate.from("2022-06-15"),
             end: Temporal.PlainDate.from("2024-01-01"),

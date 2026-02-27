@@ -1,7 +1,8 @@
+import { describe } from "vitest";
 import { toPlainTime } from "./index.js";
 
-describe("toPlainTime", () => {
-    it("converts PlainDateTime to PlainTime", () => {
+describe("toPlainTime", (it) => {
+    it("converts PlainDateTime to PlainTime", ({ expect }) => {
         const pdt = Temporal.PlainDateTime.from("2024-06-15T10:30:45");
         const result = toPlainTime(pdt);
         expect(result instanceof Temporal.PlainTime).toBe(true);
@@ -10,7 +11,7 @@ describe("toPlainTime", () => {
         expect(result.second).toBe(45);
     });
 
-    it("converts ZonedDateTime to PlainTime", () => {
+    it("converts ZonedDateTime to PlainTime", ({ expect }) => {
         const zdt = Temporal.ZonedDateTime.from("2024-06-15T14:20:00[UTC]");
         const result = toPlainTime(zdt);
         expect(result instanceof Temporal.PlainTime).toBe(true);
@@ -19,7 +20,7 @@ describe("toPlainTime", () => {
         expect(result.second).toBe(0);
     });
 
-    it("strips date information", () => {
+    it("strips date information", ({ expect }) => {
         const pdt = Temporal.PlainDateTime.from("2024-12-31T23:59:59");
         const result = toPlainTime(pdt);
         expect(result.hour).toBe(23);
@@ -27,7 +28,7 @@ describe("toPlainTime", () => {
         expect(result.second).toBe(59);
     });
 
-    it("preserves sub-second precision", () => {
+    it("preserves sub-second precision", ({ expect }) => {
         const pdt = Temporal.PlainDateTime.from(
             "2024-01-01T12:00:00.123456789",
         );

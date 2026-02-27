@@ -1,7 +1,8 @@
+import { describe } from "vitest";
 import { areIntervalsOverlapping } from "./index.js";
 
-describe("areIntervalsOverlapping", () => {
-    it("returns true when intervals overlap", () => {
+describe("areIntervalsOverlapping", (it) => {
+    it("returns true when intervals overlap", ({ expect }) => {
         const intervalA = {
             start: Temporal.PlainDate.from("2024-01-01"),
             end: Temporal.PlainDate.from("2024-01-10"),
@@ -13,7 +14,7 @@ describe("areIntervalsOverlapping", () => {
         expect(areIntervalsOverlapping(intervalA, intervalB)).toBe(true);
     });
 
-    it("returns false when intervals do not overlap", () => {
+    it("returns false when intervals do not overlap", ({ expect }) => {
         const intervalA = {
             start: Temporal.PlainDate.from("2024-01-01"),
             end: Temporal.PlainDate.from("2024-01-05"),
@@ -25,7 +26,9 @@ describe("areIntervalsOverlapping", () => {
         expect(areIntervalsOverlapping(intervalA, intervalB)).toBe(false);
     });
 
-    it("returns false when intervals share an endpoint (non-inclusive)", () => {
+    it("returns false when intervals share an endpoint (non-inclusive)", ({
+        expect,
+    }) => {
         const intervalA = {
             start: Temporal.PlainDate.from("2024-01-01"),
             end: Temporal.PlainDate.from("2024-01-10"),
@@ -37,7 +40,9 @@ describe("areIntervalsOverlapping", () => {
         expect(areIntervalsOverlapping(intervalA, intervalB)).toBe(false);
     });
 
-    it("returns true when intervals share an endpoint (inclusive)", () => {
+    it("returns true when intervals share an endpoint (inclusive)", ({
+        expect,
+    }) => {
         const intervalA = {
             start: Temporal.PlainDate.from("2024-01-01"),
             end: Temporal.PlainDate.from("2024-01-10"),
@@ -51,7 +56,9 @@ describe("areIntervalsOverlapping", () => {
         ).toBe(true);
     });
 
-    it("returns true when one interval fully contains the other", () => {
+    it("returns true when one interval fully contains the other", ({
+        expect,
+    }) => {
         const intervalA = {
             start: Temporal.PlainDate.from("2024-01-01"),
             end: Temporal.PlainDate.from("2024-01-31"),
@@ -63,7 +70,7 @@ describe("areIntervalsOverlapping", () => {
         expect(areIntervalsOverlapping(intervalA, intervalB)).toBe(true);
     });
 
-    it("works with PlainDateTime", () => {
+    it("works with PlainDateTime", ({ expect }) => {
         const intervalA = {
             start: Temporal.PlainDateTime.from("2024-01-01T08:00:00"),
             end: Temporal.PlainDateTime.from("2024-01-01T12:00:00"),

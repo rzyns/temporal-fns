@@ -1,3 +1,4 @@
+import { describe } from "vitest";
 import type { ClockProvider } from "../types.js";
 import { isYesterday } from "./index.js";
 
@@ -11,23 +12,23 @@ const mockClock: ClockProvider = {
     timeZoneId: () => "UTC",
 };
 
-describe("isYesterday", () => {
-    it("returns true when the date is yesterday", () => {
+describe("isYesterday", (it) => {
+    it("returns true when the date is yesterday", ({ expect }) => {
         const date = Temporal.ZonedDateTime.from("2024-06-14T08:00:00[UTC]");
         expect(isYesterday(date, { clock: mockClock })).toBe(true);
     });
 
-    it("returns false when the date is today", () => {
+    it("returns false when the date is today", ({ expect }) => {
         const date = Temporal.ZonedDateTime.from("2024-06-15T12:00:00[UTC]");
         expect(isYesterday(date, { clock: mockClock })).toBe(false);
     });
 
-    it("returns false when the date is tomorrow", () => {
+    it("returns false when the date is tomorrow", ({ expect }) => {
         const date = Temporal.ZonedDateTime.from("2024-06-16T12:00:00[UTC]");
         expect(isYesterday(date, { clock: mockClock })).toBe(false);
     });
 
-    it("returns true regardless of time-of-day", () => {
+    it("returns true regardless of time-of-day", ({ expect }) => {
         const date = Temporal.ZonedDateTime.from("2024-06-14T23:59:59[UTC]");
         expect(isYesterday(date, { clock: mockClock })).toBe(true);
     });

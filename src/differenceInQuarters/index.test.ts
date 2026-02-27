@@ -1,32 +1,37 @@
+import { describe } from "vitest";
 import { differenceInQuarters } from "./index.js";
 
-describe("differenceInQuarters", () => {
-    it("returns the number of full quarters between two dates", () => {
+describe("differenceInQuarters", (it) => {
+    it("returns the number of full quarters between two dates", ({
+        expect,
+    }) => {
         const left = Temporal.PlainDate.from("2024-10-01");
         const right = Temporal.PlainDate.from("2024-01-01");
         expect(differenceInQuarters(left, right)).toBe(3);
     });
 
-    it("returns a negative number when dateLeft is before dateRight", () => {
+    it("returns a negative number when dateLeft is before dateRight", ({
+        expect,
+    }) => {
         const left = Temporal.PlainDate.from("2024-01-01");
         const right = Temporal.PlainDate.from("2024-10-01");
         expect(differenceInQuarters(left, right)).toBe(-3);
     });
 
-    it("returns 0 for dates in the same quarter", () => {
+    it("returns 0 for dates in the same quarter", ({ expect }) => {
         const left = Temporal.PlainDate.from("2024-02-15");
         const right = Temporal.PlainDate.from("2024-01-01");
         expect(differenceInQuarters(left, right)).toBe(0);
     });
 
-    it("truncates partial quarters", () => {
+    it("truncates partial quarters", ({ expect }) => {
         const left = Temporal.PlainDate.from("2024-05-15");
         const right = Temporal.PlainDate.from("2024-01-01");
         // 4 full months = 1 full quarter
         expect(differenceInQuarters(left, right)).toBe(1);
     });
 
-    it("works with ZonedDateTime inputs", () => {
+    it("works with ZonedDateTime inputs", ({ expect }) => {
         const left = Temporal.ZonedDateTime.from(
             "2025-01-01T00:00:00[America/New_York]",
         );

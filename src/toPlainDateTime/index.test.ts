@@ -1,7 +1,8 @@
+import { describe } from "vitest";
 import { toPlainDateTime } from "./index.js";
 
-describe("toPlainDateTime", () => {
-    it("converts ZonedDateTime to PlainDateTime", () => {
+describe("toPlainDateTime", (it) => {
+    it("converts ZonedDateTime to PlainDateTime", ({ expect }) => {
         const zdt = Temporal.ZonedDateTime.from(
             "2024-06-15T10:30:00[America/New_York]",
         );
@@ -14,7 +15,7 @@ describe("toPlainDateTime", () => {
         expect(result.minute).toBe(30);
     });
 
-    it("strips timezone information", () => {
+    it("strips timezone information", ({ expect }) => {
         const zdt = Temporal.ZonedDateTime.from(
             "2024-06-15T10:30:00[Asia/Tokyo]",
         );
@@ -23,7 +24,7 @@ describe("toPlainDateTime", () => {
         expect(result.toString()).toBe("2024-06-15T10:30:00");
     });
 
-    it("preserves date and time components", () => {
+    it("preserves date and time components", ({ expect }) => {
         const zdt = Temporal.ZonedDateTime.from("2024-12-25T23:59:59.123[UTC]");
         const result = toPlainDateTime(zdt);
         expect(result.year).toBe(2024);
@@ -35,7 +36,7 @@ describe("toPlainDateTime", () => {
         expect(result.millisecond).toBe(123);
     });
 
-    it("works with different timezones", () => {
+    it("works with different timezones", ({ expect }) => {
         const zdt = Temporal.ZonedDateTime.from(
             "2024-01-01T00:00:00[Europe/London]",
         );

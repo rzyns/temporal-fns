@@ -1,7 +1,8 @@
+import { describe } from "vitest";
 import { eachWorkingDayOfInterval } from "./index.js";
 
-describe("eachWorkingDayOfInterval", () => {
-    it("returns only working days in the interval", () => {
+describe("eachWorkingDayOfInterval", (it) => {
+    it("returns only working days in the interval", ({ expect }) => {
         const interval = {
             start: Temporal.PlainDate.from("2024-01-15"), // Monday
             end: Temporal.PlainDate.from("2024-01-21"), // Sunday
@@ -16,7 +17,7 @@ describe("eachWorkingDayOfInterval", () => {
         ]);
     });
 
-    it("respects custom working days", () => {
+    it("respects custom working days", ({ expect }) => {
         const interval = {
             start: Temporal.PlainDate.from("2024-01-15"),
             end: Temporal.PlainDate.from("2024-01-21"),
@@ -31,7 +32,7 @@ describe("eachWorkingDayOfInterval", () => {
         ]);
     });
 
-    it("returns empty array when no working days in range", () => {
+    it("returns empty array when no working days in range", ({ expect }) => {
         const interval = {
             start: Temporal.PlainDate.from("2024-01-13"), // Saturday
             end: Temporal.PlainDate.from("2024-01-14"), // Sunday

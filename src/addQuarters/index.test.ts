@@ -1,19 +1,20 @@
+import { describe } from "vitest";
 import { addQuarters } from "./index.js";
 
-describe("addQuarters", () => {
-    it("adds quarters to a PlainDate", () => {
+describe("addQuarters", (it) => {
+    it("adds quarters to a PlainDate", ({ expect }) => {
         const date = Temporal.PlainDate.from("2024-01-15");
         const result = addQuarters(date, 1);
         expect(result.toString()).toBe("2024-04-15");
     });
 
-    it("adds quarters to a PlainDateTime", () => {
+    it("adds quarters to a PlainDateTime", ({ expect }) => {
         const dt = Temporal.PlainDateTime.from("2024-01-15T10:00:00");
         const result = addQuarters(dt, 2);
         expect(result.toString()).toBe("2024-07-15T10:00:00");
     });
 
-    it("adds quarters to a ZonedDateTime", () => {
+    it("adds quarters to a ZonedDateTime", ({ expect }) => {
         const zdt = Temporal.ZonedDateTime.from(
             "2024-01-01T00:00:00[America/New_York]",
         );
@@ -22,7 +23,7 @@ describe("addQuarters", () => {
         expect(result.month).toBe(1);
     });
 
-    it("crosses year boundaries", () => {
+    it("crosses year boundaries", ({ expect }) => {
         const date = Temporal.PlainDate.from("2024-10-01");
         const result = addQuarters(date, 2);
         expect(result.toString()).toBe("2025-04-01");

@@ -1,12 +1,13 @@
+import { describe } from "vitest";
 import { formatISODuration } from "./index.js";
 
-describe("formatISODuration", () => {
-    it("formats a simple duration", () => {
+describe("formatISODuration", (it) => {
+    it("formats a simple duration", ({ expect }) => {
         const d = Temporal.Duration.from({ days: 5 });
         expect(formatISODuration(d)).toBe("P5D");
     });
 
-    it("formats a complex duration", () => {
+    it("formats a complex duration", ({ expect }) => {
         const d = Temporal.Duration.from({
             years: 1,
             months: 2,
@@ -16,7 +17,7 @@ describe("formatISODuration", () => {
         expect(formatISODuration(d)).toBe("P1Y2M3DT4H");
     });
 
-    it("formats a zero duration", () => {
+    it("formats a zero duration", ({ expect }) => {
         const d = Temporal.Duration.from("PT0S");
         expect(formatISODuration(d)).toBe("PT0S");
     });

@@ -1,13 +1,14 @@
+import { describe } from "vitest";
 import { startOfSecond } from "./index.js";
 
-describe("startOfSecond", () => {
-    it("sets sub-second fields to zero for PlainDateTime", () => {
+describe("startOfSecond", (it) => {
+    it("sets sub-second fields to zero for PlainDateTime", ({ expect }) => {
         const dt = Temporal.PlainDateTime.from("2024-06-15T14:35:45.123456789");
         const result = startOfSecond(dt);
         expect(result.toString()).toBe("2024-06-15T14:35:45");
     });
 
-    it("sets sub-second fields to zero for ZonedDateTime", () => {
+    it("sets sub-second fields to zero for ZonedDateTime", ({ expect }) => {
         const zdt = Temporal.ZonedDateTime.from(
             "2024-06-15T14:35:45.123456789[America/New_York]",
         );
@@ -18,7 +19,7 @@ describe("startOfSecond", () => {
         expect(result.nanosecond).toBe(0);
     });
 
-    it("preserves already-start-of-second", () => {
+    it("preserves already-start-of-second", ({ expect }) => {
         const dt = Temporal.PlainDateTime.from("2024-06-15T14:35:45");
         const result = startOfSecond(dt);
         expect(result.toString()).toBe("2024-06-15T14:35:45");

@@ -1,7 +1,8 @@
+import { describe } from "vitest";
 import { isWithinInterval } from "./index.js";
 
-describe("isWithinInterval", () => {
-    it("returns true when date is within the interval", () => {
+describe("isWithinInterval", (it) => {
+    it("returns true when date is within the interval", ({ expect }) => {
         const date = Temporal.PlainDate.from("2024-01-15");
         const interval = {
             start: Temporal.PlainDate.from("2024-01-01"),
@@ -10,7 +11,7 @@ describe("isWithinInterval", () => {
         expect(isWithinInterval(date, interval)).toBe(true);
     });
 
-    it("returns false when date is before the interval", () => {
+    it("returns false when date is before the interval", ({ expect }) => {
         const date = Temporal.PlainDate.from("2023-12-31");
         const interval = {
             start: Temporal.PlainDate.from("2024-01-01"),
@@ -19,7 +20,7 @@ describe("isWithinInterval", () => {
         expect(isWithinInterval(date, interval)).toBe(false);
     });
 
-    it("returns false when date is after the interval", () => {
+    it("returns false when date is after the interval", ({ expect }) => {
         const date = Temporal.PlainDate.from("2024-02-01");
         const interval = {
             start: Temporal.PlainDate.from("2024-01-01"),
@@ -28,7 +29,9 @@ describe("isWithinInterval", () => {
         expect(isWithinInterval(date, interval)).toBe(false);
     });
 
-    it("returns true when date equals the start of the interval", () => {
+    it("returns true when date equals the start of the interval", ({
+        expect,
+    }) => {
         const date = Temporal.PlainDate.from("2024-01-01");
         const interval = {
             start: Temporal.PlainDate.from("2024-01-01"),
@@ -37,7 +40,9 @@ describe("isWithinInterval", () => {
         expect(isWithinInterval(date, interval)).toBe(true);
     });
 
-    it("returns true when date equals the end of the interval", () => {
+    it("returns true when date equals the end of the interval", ({
+        expect,
+    }) => {
         const date = Temporal.PlainDate.from("2024-01-31");
         const interval = {
             start: Temporal.PlainDate.from("2024-01-01"),
@@ -46,7 +51,7 @@ describe("isWithinInterval", () => {
         expect(isWithinInterval(date, interval)).toBe(true);
     });
 
-    it("works with PlainDateTime", () => {
+    it("works with PlainDateTime", ({ expect }) => {
         const date = Temporal.PlainDateTime.from("2024-01-15T10:30:00");
         const interval = {
             start: Temporal.PlainDateTime.from("2024-01-15T08:00:00"),

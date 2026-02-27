@@ -1,7 +1,8 @@
+import { describe } from "vitest";
 import { min } from "./index.js";
 
-describe("min", () => {
-    it("returns the earliest PlainDate from an array", () => {
+describe("min", (it) => {
+    it("returns the earliest PlainDate from an array", ({ expect }) => {
         const dates = [
             Temporal.PlainDate.from("2024-06-20"),
             Temporal.PlainDate.from("2024-01-15"),
@@ -11,7 +12,7 @@ describe("min", () => {
         expect(result.toString()).toBe("2024-01-15");
     });
 
-    it("returns the earliest PlainDateTime from an array", () => {
+    it("returns the earliest PlainDateTime from an array", ({ expect }) => {
         const dates = [
             Temporal.PlainDateTime.from("2024-01-15T16:30:00"),
             Temporal.PlainDateTime.from("2024-01-15T08:00:00"),
@@ -21,7 +22,7 @@ describe("min", () => {
         expect(result.toString()).toBe("2024-01-15T08:00:00");
     });
 
-    it("returns the earliest ZonedDateTime from an array", () => {
+    it("returns the earliest ZonedDateTime from an array", ({ expect }) => {
         const dates = [
             Temporal.ZonedDateTime.from(
                 "2024-06-20T12:00:00[America/New_York]",
@@ -37,12 +38,14 @@ describe("min", () => {
         expect(result.toPlainDate().toString()).toBe("2024-01-15");
     });
 
-    it("returns the single element for a single-element array", () => {
+    it("returns the single element for a single-element array", ({
+        expect,
+    }) => {
         const date = Temporal.PlainDate.from("2024-01-15");
         expect(min([date]).toString()).toBe("2024-01-15");
     });
 
-    it("throws TypeError for an empty array", () => {
+    it("throws TypeError for an empty array", ({ expect }) => {
         expect(() => min([])).toThrow(TypeError);
         expect(() => min([])).toThrow("min requires at least one date");
     });

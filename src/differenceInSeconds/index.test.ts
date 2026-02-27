@@ -1,30 +1,37 @@
+import { describe } from "vitest";
 import { differenceInSeconds } from "./index.js";
 
-describe("differenceInSeconds", () => {
-    it("returns the number of seconds between two PlainDateTimes", () => {
+describe("differenceInSeconds", (it) => {
+    it("returns the number of seconds between two PlainDateTimes", ({
+        expect,
+    }) => {
         const left = Temporal.PlainDateTime.from("2024-01-15T14:00:30");
         const right = Temporal.PlainDateTime.from("2024-01-15T14:00:00");
         expect(differenceInSeconds(left, right)).toBe(30);
     });
 
-    it("returns a negative number when dateLeft is before dateRight", () => {
+    it("returns a negative number when dateLeft is before dateRight", ({
+        expect,
+    }) => {
         const left = Temporal.PlainDateTime.from("2024-01-15T14:00:00");
         const right = Temporal.PlainDateTime.from("2024-01-15T14:01:00");
         expect(differenceInSeconds(left, right)).toBe(-60);
     });
 
-    it("returns 0 for the same datetime", () => {
+    it("returns 0 for the same datetime", ({ expect }) => {
         const dt = Temporal.PlainDateTime.from("2024-01-15T12:00:00");
         expect(differenceInSeconds(dt, dt)).toBe(0);
     });
 
-    it("handles large differences across days", () => {
+    it("handles large differences across days", ({ expect }) => {
         const left = Temporal.PlainDateTime.from("2024-01-16T00:00:00");
         const right = Temporal.PlainDateTime.from("2024-01-15T00:00:00");
         expect(differenceInSeconds(left, right)).toBe(86400);
     });
 
-    it("works with ZonedDateTime inputs using epoch-based calculation", () => {
+    it("works with ZonedDateTime inputs using epoch-based calculation", ({
+        expect,
+    }) => {
         const left = Temporal.ZonedDateTime.from(
             "2024-01-15T14:01:00[Europe/Berlin]",
         );

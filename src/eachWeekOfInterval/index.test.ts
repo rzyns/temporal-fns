@@ -1,7 +1,10 @@
+import { describe } from "vitest";
 import { eachWeekOfInterval } from "./index.js";
 
-describe("eachWeekOfInterval", () => {
-    it("returns each week start in the interval (default Monday start)", () => {
+describe("eachWeekOfInterval", (it) => {
+    it("returns each week start in the interval (default Monday start)", ({
+        expect,
+    }) => {
         // 2024-01-01 is a Monday
         const interval = {
             start: Temporal.PlainDate.from("2024-01-03"), // Wednesday
@@ -16,7 +19,7 @@ describe("eachWeekOfInterval", () => {
         ]);
     });
 
-    it("returns each week start with Sunday as week start", () => {
+    it("returns each week start with Sunday as week start", ({ expect }) => {
         // 2024-01-07 is a Sunday
         const interval = {
             start: Temporal.PlainDate.from("2024-01-03"), // Wednesday
@@ -30,7 +33,7 @@ describe("eachWeekOfInterval", () => {
         ]);
     });
 
-    it("returns single week when interval is within one week", () => {
+    it("returns single week when interval is within one week", ({ expect }) => {
         const interval = {
             start: Temporal.PlainDate.from("2024-01-02"), // Tuesday
             end: Temporal.PlainDate.from("2024-01-04"), // Thursday
@@ -40,7 +43,7 @@ describe("eachWeekOfInterval", () => {
         expect(result[0].toString()).toBe("2024-01-01"); // Monday
     });
 
-    it("returns empty array when start is after end", () => {
+    it("returns empty array when start is after end", ({ expect }) => {
         const interval = {
             start: Temporal.PlainDate.from("2024-01-20"),
             end: Temporal.PlainDate.from("2024-01-01"),
@@ -49,7 +52,7 @@ describe("eachWeekOfInterval", () => {
         expect(result).toHaveLength(0);
     });
 
-    it("handles month boundary crossings", () => {
+    it("handles month boundary crossings", ({ expect }) => {
         const interval = {
             start: Temporal.PlainDate.from("2024-01-29"), // Monday
             end: Temporal.PlainDate.from("2024-02-12"), // Monday

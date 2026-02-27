@@ -1,19 +1,22 @@
+import { describe } from "vitest";
 import { startOfDecade } from "./index.js";
 
-describe("startOfDecade", () => {
-    it("returns start of decade for PlainDate", () => {
+describe("startOfDecade", (it) => {
+    it("returns start of decade for PlainDate", ({ expect }) => {
         const date = Temporal.PlainDate.from("2024-06-15");
         const result = startOfDecade(date);
         expect(result.toString()).toBe("2020-01-01");
     });
 
-    it("returns start of decade for PlainDateTime with midnight", () => {
+    it("returns start of decade for PlainDateTime with midnight", ({
+        expect,
+    }) => {
         const dt = Temporal.PlainDateTime.from("2024-06-15T14:30:00");
         const result = startOfDecade(dt);
         expect(result.toString()).toBe("2020-01-01T00:00:00");
     });
 
-    it("returns start of decade for ZonedDateTime", () => {
+    it("returns start of decade for ZonedDateTime", ({ expect }) => {
         const zdt = Temporal.ZonedDateTime.from(
             "2024-06-15T14:30:00[America/New_York]",
         );
@@ -24,13 +27,13 @@ describe("startOfDecade", () => {
         expect(result.hour).toBe(0);
     });
 
-    it("handles year at decade boundary", () => {
+    it("handles year at decade boundary", ({ expect }) => {
         const date = Temporal.PlainDate.from("2020-06-15");
         const result = startOfDecade(date);
         expect(result.toString()).toBe("2020-01-01");
     });
 
-    it("handles year 2019 (end of previous decade)", () => {
+    it("handles year 2019 (end of previous decade)", ({ expect }) => {
         const date = Temporal.PlainDate.from("2019-12-31");
         const result = startOfDecade(date);
         expect(result.toString()).toBe("2010-01-01");

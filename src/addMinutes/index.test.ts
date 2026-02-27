@@ -1,19 +1,20 @@
+import { describe } from "vitest";
 import { addMinutes } from "./index.js";
 
-describe("addMinutes", () => {
-    it("adds minutes to a PlainTime", () => {
+describe("addMinutes", (it) => {
+    it("adds minutes to a PlainTime", ({ expect }) => {
         const time = Temporal.PlainTime.from("10:15:00");
         const result = addMinutes(time, 30);
         expect(result.toString()).toBe("10:45:00");
     });
 
-    it("adds minutes to a PlainDateTime", () => {
+    it("adds minutes to a PlainDateTime", ({ expect }) => {
         const dt = Temporal.PlainDateTime.from("2024-01-15T10:00:00");
         const result = addMinutes(dt, 90);
         expect(result.toString()).toBe("2024-01-15T11:30:00");
     });
 
-    it("adds minutes to a ZonedDateTime", () => {
+    it("adds minutes to a ZonedDateTime", ({ expect }) => {
         const zdt = Temporal.ZonedDateTime.from(
             "2024-01-15T10:00:00[Europe/Berlin]",
         );
@@ -21,7 +22,7 @@ describe("addMinutes", () => {
         expect(result.minute).toBe(45);
     });
 
-    it("crosses hour boundary", () => {
+    it("crosses hour boundary", ({ expect }) => {
         const time = Temporal.PlainTime.from("10:50:00");
         const result = addMinutes(time, 20);
         expect(result.toString()).toBe("11:10:00");
