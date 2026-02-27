@@ -26,7 +26,7 @@ describe("eachYearOfInterval", (it) => {
         };
         const result = eachYearOfInterval(interval);
         expect(result).toHaveLength(1);
-        expect(result[0].toString()).toBe("2024-01-01");
+        expect(result[0]?.toString()).toBe("2024-01-01");
     });
 
     it("returns empty array when start is after end", ({ expect }) => {

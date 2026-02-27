@@ -25,7 +25,7 @@ describe("eachMonthOfInterval", (it) => {
         };
         const result = eachMonthOfInterval(interval);
         expect(result).toHaveLength(1);
-        expect(result[0].toString()).toBe("2024-03-01");
+        expect(result[0]?.toString()).toBe("2024-03-01");
     });
 
     it("returns empty array when start is after end", ({ expect }) => {

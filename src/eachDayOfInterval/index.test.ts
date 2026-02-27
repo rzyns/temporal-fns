@@ -21,7 +21,7 @@ describe("eachDayOfInterval", (it) => {
         const date = Temporal.PlainDate.from("2024-06-15");
         const result = eachDayOfInterval({ start: date, end: date });
         expect(result).toHaveLength(1);
-        expect(result[0].toString()).toBe("2024-06-15");
+        expect(result[0]?.toString()).toBe("2024-06-15");
     });
 
     it("returns empty array when start is after end", ({ expect }) => {

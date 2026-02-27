@@ -40,7 +40,7 @@ describe("eachWeekOfInterval", (it) => {
         };
         const result = eachWeekOfInterval(interval);
         expect(result).toHaveLength(1);
-        expect(result[0].toString()).toBe("2024-01-01"); // Monday
+        expect(result[0]?.toString()).toBe("2024-01-01"); // Monday
     });
 
     it("returns empty array when start is after end", ({ expect }) => {
