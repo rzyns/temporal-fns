@@ -1,24 +1,15 @@
+import { type TemporalOf, withDate } from "../_lib/temporalOf.js";
 import type { AnyTemporalDate, DayOfWeek } from "../types.js";
 
-export function previousDay(
-    date: Temporal.ZonedDateTime,
+export function previousDay<T extends AnyTemporalDate>(
+    date: T,
     day: DayOfWeek,
-): Temporal.ZonedDateTime;
-export function previousDay(
-    date: Temporal.PlainDateTime,
-    day: DayOfWeek,
-): Temporal.PlainDateTime;
-export function previousDay(
-    date: Temporal.PlainDate,
-    day: DayOfWeek,
-): Temporal.PlainDate;
-export function previousDay(
-    date: AnyTemporalDate,
-    day: DayOfWeek,
-): AnyTemporalDate {
-    let result = date.subtract({ days: 1 });
-    while (result.dayOfWeek !== day) {
-        result = result.subtract({ days: 1 });
-    }
-    return result;
+): TemporalOf<T> {
+    return withDate(date, (d) => {
+        let result = d.subtract({ days: 1 });
+        while (result.dayOfWeek !== day) {
+            result = result.subtract({ days: 1 });
+        }
+        return result;
+    });
 }

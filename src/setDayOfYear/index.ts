@@ -1,3 +1,4 @@
+import { type TemporalOf, withDate } from "../_lib/temporalOf.js";
 import type { AnyTemporalDate } from "../types.js";
 
 /**
@@ -8,22 +9,12 @@ import type { AnyTemporalDate } from "../types.js";
  * @param dayOfYear - The day of the year to set (1-366)
  * @returns A new date set to the given day of the year
  */
-export function setDayOfYear(
-    date: Temporal.ZonedDateTime,
+export function setDayOfYear<T extends AnyTemporalDate>(
+    date: T,
     dayOfYear: number,
-): Temporal.ZonedDateTime;
-export function setDayOfYear(
-    date: Temporal.PlainDateTime,
-    dayOfYear: number,
-): Temporal.PlainDateTime;
-export function setDayOfYear(
-    date: Temporal.PlainDate,
-    dayOfYear: number,
-): Temporal.PlainDate;
-export function setDayOfYear(
-    date: AnyTemporalDate,
-    dayOfYear: number,
-): AnyTemporalDate {
-    const startOfYear = date.with({ month: 1, day: 1 });
-    return startOfYear.add({ days: dayOfYear - 1 });
+): TemporalOf<T> {
+    return withDate(date, (d) => {
+        const startOfYear = d.with({ month: 1, day: 1 });
+        return startOfYear.add({ days: dayOfYear - 1 });
+    });
 }

@@ -1,20 +1,9 @@
+import { type TemporalOf, withDate } from "../_lib/temporalOf.js";
 import type { AnyTemporalDate } from "../types.js";
 
-export function withCalendar(
-    date: Temporal.ZonedDateTime,
+export function withCalendar<T extends AnyTemporalDate>(
+    date: T,
     calendar: string,
-): Temporal.ZonedDateTime;
-export function withCalendar(
-    date: Temporal.PlainDateTime,
-    calendar: string,
-): Temporal.PlainDateTime;
-export function withCalendar(
-    date: Temporal.PlainDate,
-    calendar: string,
-): Temporal.PlainDate;
-export function withCalendar(
-    date: AnyTemporalDate,
-    calendar: string,
-): AnyTemporalDate {
-    return date.withCalendar(calendar);
+): TemporalOf<T> {
+    return withDate(date, (d) => d.withCalendar(calendar));
 }

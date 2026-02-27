@@ -1,25 +1,23 @@
+import { type TemporalOf, withDate } from "../_lib/temporalOf.js";
 import type { AnyTemporalDate } from "../types.js";
 
-export function startOfDecade(
-    date: Temporal.ZonedDateTime,
-): Temporal.ZonedDateTime;
-export function startOfDecade(
-    date: Temporal.PlainDateTime,
-): Temporal.PlainDateTime;
-export function startOfDecade(date: Temporal.PlainDate): Temporal.PlainDate;
-export function startOfDecade(date: AnyTemporalDate): AnyTemporalDate {
-    const year = Math.floor(date.year / 10) * 10;
-    if (date instanceof Temporal.PlainDate)
-        return date.with({ year, month: 1, day: 1 });
-    return date.with({
-        year,
-        month: 1,
-        day: 1,
-        hour: 0,
-        minute: 0,
-        second: 0,
-        millisecond: 0,
-        microsecond: 0,
-        nanosecond: 0,
+export function startOfDecade<T extends AnyTemporalDate>(
+    date: T,
+): TemporalOf<T> {
+    return withDate(date, (d) => {
+        const year = Math.floor(d.year / 10) * 10;
+        if (d instanceof Temporal.PlainDate)
+            return d.with({ year, month: 1, day: 1 });
+        return d.with({
+            year,
+            month: 1,
+            day: 1,
+            hour: 0,
+            minute: 0,
+            second: 0,
+            millisecond: 0,
+            microsecond: 0,
+            nanosecond: 0,
+        });
     });
 }

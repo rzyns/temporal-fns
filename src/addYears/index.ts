@@ -1,20 +1,9 @@
+import { type TemporalOf, withDate } from "../_lib/temporalOf.js";
 import type { AnyTemporalDate } from "../types.js";
 
-export function addYears(
-    date: Temporal.ZonedDateTime,
+export function addYears<T extends AnyTemporalDate>(
+    date: T,
     amount: number,
-): Temporal.ZonedDateTime;
-export function addYears(
-    date: Temporal.PlainDateTime,
-    amount: number,
-): Temporal.PlainDateTime;
-export function addYears(
-    date: Temporal.PlainDate,
-    amount: number,
-): Temporal.PlainDate;
-export function addYears(
-    date: AnyTemporalDate,
-    amount: number,
-): AnyTemporalDate {
-    return date.add({ years: amount });
+): TemporalOf<T> {
+    return withDate(date, (d) => d.add({ years: amount }));
 }

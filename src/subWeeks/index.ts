@@ -1,20 +1,9 @@
+import { type TemporalOf, withDate } from "../_lib/temporalOf.js";
 import type { AnyTemporalDate } from "../types.js";
 
-export function subWeeks(
-    date: Temporal.ZonedDateTime,
+export function subWeeks<T extends AnyTemporalDate>(
+    date: T,
     amount: number,
-): Temporal.ZonedDateTime;
-export function subWeeks(
-    date: Temporal.PlainDateTime,
-    amount: number,
-): Temporal.PlainDateTime;
-export function subWeeks(
-    date: Temporal.PlainDate,
-    amount: number,
-): Temporal.PlainDate;
-export function subWeeks(
-    date: AnyTemporalDate,
-    amount: number,
-): AnyTemporalDate {
-    return date.subtract({ weeks: amount });
+): TemporalOf<T> {
+    return withDate(date, (d) => d.subtract({ weeks: amount }));
 }
