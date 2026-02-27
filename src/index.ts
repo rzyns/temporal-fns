@@ -170,6 +170,7 @@ export * from "./subYears/index.js";
 export * from "./toPlainDate/index.js";
 export * from "./toPlainDateTime/index.js";
 export * from "./toPlainTime/index.js";
+export * from "./toTimeZone/index.js";
 export * from "./toZonedDateTime/index.js";
 export * from "./withCalendar/index.js";
 export * from "./withTimeZone/index.js";
