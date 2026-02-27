@@ -126,6 +126,7 @@ export * from "./parseISODate/index.js";
 export * from "./parseISODateTime/index.js";
 export * from "./parseISOInstant/index.js";
 export * from "./parseISOZoned/index.js";
+export * from "./pipe/index.js";
 export * from "./previousDay/index.js";
 export * from "./previousFriday/index.js";
 export * from "./previousMonday/index.js";
