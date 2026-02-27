@@ -168,6 +168,30 @@ const result = pipe(
 
 `pipe(value)` with no functions returns the value unchanged (identity). Type safety is preserved through up to 9 transformation steps.
 
+### coerce — universal input normalization
+
+Accept any reasonable temporal input and get back the right Temporal type. When you add a `timeZone` option, the result is always a `ZonedDateTime`.
+
+```typescript
+import { coerce } from "temporal-fns";
+
+// 1. JS Date from an API response → Temporal.Instant
+const apiDate = new Date(response.created_at);
+const instant = coerce(apiDate);
+// Temporal.Instant — ready for exact-time comparisons
+
+// 2. Epoch ms from a database row → Temporal.Instant
+const row = { ts: 1718448600000 };
+const dbInstant = coerce(row.ts);
+// Temporal.Instant — fromEpochMilliseconds under the hood
+
+// 3. Any input + timeZone → guaranteed ZonedDateTime for display
+const zdt = coerce(row.ts, { timeZone: "America/New_York" });
+// Temporal.ZonedDateTime in America/New_York — ready for formatting
+```
+
+`coerce` also passes through any Temporal type unchanged (identity), parses ISO strings via `parseISO`, and throws on invalid input.
+
 ## API
 
 ### Composition
@@ -175,6 +199,7 @@ const result = pipe(
 | Function | Description |
 |---|---|
 | `pipe(value, ...fns)` | Left-to-right function composition with type inference |
+| `coerce(input, options?)` | Universal input normalization to Temporal types |
 
 ### Arithmetic
 

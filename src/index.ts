@@ -3,6 +3,7 @@ export type {
     AnyTemporalDateTime,
     AnyTemporalInstant,
     AnyTemporalTime,
+    TemporalInput,
     TemporalInterval,
     ClockProvider,
     NowOptions,
@@ -26,6 +27,7 @@ export * from "./areIntervalsOverlapping/index.js";
 export * from "./clamp/index.js";
 export * from "./closestIndexTo/index.js";
 export * from "./closestTo/index.js";
+export * from "./coerce/index.js";
 export * from "./compareAsc/index.js";
 export * from "./compareDesc/index.js";
 export * from "./differenceInCalendarDays/index.js";

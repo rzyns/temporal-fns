@@ -92,3 +92,15 @@ export interface WorkingDayOptions {
 
 /** Branded type for day-of-week numbers (1=Mon ... 7=Sun, ISO 8601) */
 export type DayOfWeek = 1 | 2 | 3 | 4 | 5 | 6 | 7;
+
+/**
+ * Any reasonable input that can be coerced into a Temporal type.
+ * Accepted by `coerce()` as a universal entry point.
+ */
+export type TemporalInput =
+    | string
+    | number
+    | Date
+    | AnyTemporalDate
+    | Temporal.Instant
+    | Temporal.PlainTime;
