@@ -232,6 +232,31 @@ compareAsc(instant, plain);
 // wall-clock types have no defined epoch. Convert to ZonedDateTime first.
 ```
 
+### toTimeZone / toLocal
+
+Convert any instant-capable Temporal type into a `ZonedDateTime` in a specific timezone — or your local timezone.
+
+```typescript
+import { toTimeZone, toLocal } from "temporal-fns";
+
+// 1. Convert a DB Instant to a display timezone
+const dbInstant = Temporal.Instant.from("2025-06-15T17:00:00Z");
+const nyTime = toTimeZone(dbInstant, "America/New_York");
+// -> 2025-06-15T13:00:00-04:00[America/New_York]
+
+// 2. View a ZonedDateTime in another timezone
+const meeting = Temporal.ZonedDateTime.from("2025-06-15T09:00:00[America/Los_Angeles]");
+const inTokyo = toTimeZone(meeting, "Asia/Tokyo");
+// -> 2025-06-16T01:00:00+09:00[Asia/Tokyo] (same instant, different wall clock)
+
+// 3. toLocal() — "what time is it here?"
+const event = Temporal.Instant.from("2025-06-15T17:00:00Z");
+const here = toLocal(event);
+// -> ZonedDateTime in your system's timezone
+```
+
+`toTimeZone` also accepts `PlainDateTime` with an optional `disambiguation` parameter for DST-ambiguous times (`"compatible"` by default). `PlainDate` is intentionally excluded — it has no time component.
+
 ## API
 
 ### Composition
@@ -406,6 +431,8 @@ compareAsc(instant, plain);
 
 | Function | Description |
 |---|---|
+| `toTimeZone(date, tz, options?)` | Convert Instant/ZonedDateTime/PlainDateTime to ZonedDateTime |
+| `toLocal(date, options?)` | Convert to ZonedDateTime in the local timezone |
 | `toZonedDateTime(pdt, tz, options?)` | PlainDateTime to ZonedDateTime |
 | `toPlainDate(date)` | Strip time to PlainDate |
 | `toPlainTime(date)` | Extract PlainTime |
