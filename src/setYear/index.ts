@@ -1,3 +1,4 @@
+import { type TemporalOf, withDate } from "../_lib/temporalOf.js";
 import type { AnyTemporalDate } from "../types.js";
 
 /**
@@ -7,18 +8,9 @@ import type { AnyTemporalDate } from "../types.js";
  * @param year - The year to set
  * @returns A new date with the year set
  */
-export function setYear(
-    date: Temporal.ZonedDateTime,
+export function setYear<T extends AnyTemporalDate>(
+    date: T,
     year: number,
-): Temporal.ZonedDateTime;
-export function setYear(
-    date: Temporal.PlainDateTime,
-    year: number,
-): Temporal.PlainDateTime;
-export function setYear(
-    date: Temporal.PlainDate,
-    year: number,
-): Temporal.PlainDate;
-export function setYear(date: AnyTemporalDate, year: number): AnyTemporalDate {
-    return date.with({ year });
+): TemporalOf<T> {
+    return withDate(date, (d) => d.with({ year }));
 }

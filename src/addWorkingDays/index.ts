@@ -1,3 +1,4 @@
+import { type TemporalOf, withDate } from "../_lib/temporalOf.js";
 import type {
     AnyTemporalDate,
     DayOfWeek,
@@ -6,36 +7,23 @@ import type {
 
 const DEFAULT_WORKING_DAYS: ReadonlyArray<DayOfWeek> = [1, 2, 3, 4, 5];
 
-export function addWorkingDays(
-    date: Temporal.ZonedDateTime,
+export function addWorkingDays<T extends AnyTemporalDate>(
+    date: T,
     amount: number,
     options?: WorkingDayOptions,
-): Temporal.ZonedDateTime;
-export function addWorkingDays(
-    date: Temporal.PlainDateTime,
-    amount: number,
-    options?: WorkingDayOptions,
-): Temporal.PlainDateTime;
-export function addWorkingDays(
-    date: Temporal.PlainDate,
-    amount: number,
-    options?: WorkingDayOptions,
-): Temporal.PlainDate;
-export function addWorkingDays(
-    date: AnyTemporalDate,
-    amount: number,
-    options?: WorkingDayOptions,
-): AnyTemporalDate {
-    const workingDays = options?.workingDays ?? DEFAULT_WORKING_DAYS;
-    const direction = amount >= 0 ? 1 : -1;
-    let remaining = Math.abs(amount);
-    let current = date;
+): TemporalOf<T> {
+    return withDate(date, (d) => {
+        const workingDays = options?.workingDays ?? DEFAULT_WORKING_DAYS;
+        const direction = amount >= 0 ? 1 : -1;
+        let remaining = Math.abs(amount);
+        let current = d;
 
-    while (remaining > 0) {
-        current = current.add({ days: direction });
-        if (workingDays.includes(current.dayOfWeek as DayOfWeek)) {
-            remaining--;
+        while (remaining > 0) {
+            current = current.add({ days: direction });
+            if (workingDays.includes(current.dayOfWeek as DayOfWeek)) {
+                remaining--;
+            }
         }
-    }
-    return current;
+        return current;
+    });
 }

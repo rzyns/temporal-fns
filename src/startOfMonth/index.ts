@@ -1,21 +1,19 @@
+import { type TemporalOf, withDate } from "../_lib/temporalOf.js";
 import type { AnyTemporalDate } from "../types.js";
 
-export function startOfMonth(
-    date: Temporal.ZonedDateTime,
-): Temporal.ZonedDateTime;
-export function startOfMonth(
-    date: Temporal.PlainDateTime,
-): Temporal.PlainDateTime;
-export function startOfMonth(date: Temporal.PlainDate): Temporal.PlainDate;
-export function startOfMonth(date: AnyTemporalDate): AnyTemporalDate {
-    if (date instanceof Temporal.PlainDate) return date.with({ day: 1 });
-    return date.with({
-        day: 1,
-        hour: 0,
-        minute: 0,
-        second: 0,
-        millisecond: 0,
-        microsecond: 0,
-        nanosecond: 0,
+export function startOfMonth<T extends AnyTemporalDate>(
+    date: T,
+): TemporalOf<T> {
+    return withDate(date, (d) => {
+        if (d instanceof Temporal.PlainDate) return d.with({ day: 1 });
+        return d.with({
+            day: 1,
+            hour: 0,
+            minute: 0,
+            second: 0,
+            millisecond: 0,
+            microsecond: 0,
+            nanosecond: 0,
+        });
     });
 }
