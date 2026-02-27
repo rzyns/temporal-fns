@@ -147,7 +147,34 @@ formatLocale(zdt, { dateStyle: "long" }, "de-DE");
 // -> "15. Juni 2025"
 ```
 
+### pipe — composing transformations
+
+Chain multiple operations left to right with full type inference:
+
+```typescript
+import { pipe, addDays, startOfDay, formatISO } from "temporal-fns";
+
+// Before: nested calls (read inside-out)
+const result = formatISO(startOfDay(addDays(zdt, 7)));
+
+// After: pipe (read left to right)
+const result = pipe(
+  zdt,
+  d => addDays(d, 7),
+  startOfDay,
+  formatISO,
+); // string — fully inferred through all steps
+```
+
+`pipe(value)` with no functions returns the value unchanged (identity). Type safety is preserved through up to 9 transformation steps.
+
 ## API
+
+### Composition
+
+| Function | Description |
+|---|---|
+| `pipe(value, ...fns)` | Left-to-right function composition with type inference |
 
 ### Arithmetic
 
