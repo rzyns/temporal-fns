@@ -1,6 +1,6 @@
 {
     "name": "@rzyns/temporal-fns",
-    "version": "0.5.0",
+    "version": "0.6.0",
     "description": "Date utility functions built on the Temporal API",
     "type": "module",
     "main": "./dist/index.js",
