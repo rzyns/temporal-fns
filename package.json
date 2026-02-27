@@ -17,12 +17,12 @@
         "access": "public"
     },
     "scripts": {
-        "build": "tsc --build",
+        "build": "tsc --build tsconfig.src.json",
         "test": "vitest run",
         "test:watch": "vitest",
         "lint": "biome check .",
         "format": "biome format --write .",
-        "typecheck": "tsc --noEmit && tsc --project tsconfig.test.json --noEmit",
+        "typecheck": "tsc --build --noEmit",
         "version": "biome format --write package.json && git add package.json",
         "prepare": "lefthook install"
     },

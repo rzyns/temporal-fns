@@ -1,5 +1,5 @@
 {
-    "extends": "./tsconfig.json",
+    "extends": "./tsconfig.src.json",
     "compilerOptions": {
         "composite": true,
         "types": ["vitest/globals", "temporal-spec/global"],
@@ -7,5 +7,6 @@
         "rootDir": ".",
         "skipLibCheck": true
     },
-    "include": ["src/**/*.test.ts", "vitest.config.ts", "vitest.setup.ts"]
+    "include": ["src/**/*.ts", "vitest.config.ts", "vitest.setup.ts"],
+    "exclude": ["node_modules", "dist"]
 }
