@@ -7,5 +7,5 @@ import type { AnyTemporalDate, DayOfWeek } from "../types.js";
  * @returns The day of the week (1-7)
  */
 export function getDay(date: AnyTemporalDate): DayOfWeek {
-  return date.dayOfWeek as DayOfWeek;
+    return date.dayOfWeek as DayOfWeek;
 }

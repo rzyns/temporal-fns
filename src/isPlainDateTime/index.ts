@@ -1,5 +1,5 @@
 export function isPlainDateTime(
-  value: unknown,
+    value: unknown,
 ): value is Temporal.PlainDateTime {
-  return value instanceof Temporal.PlainDateTime;
+    return value instanceof Temporal.PlainDateTime;
 }

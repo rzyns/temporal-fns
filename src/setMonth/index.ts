@@ -8,20 +8,20 @@ import type { AnyTemporalDate } from "../types.js";
  * @returns A new date with the month set
  */
 export function setMonth(
-  date: Temporal.ZonedDateTime,
-  month: number,
+    date: Temporal.ZonedDateTime,
+    month: number,
 ): Temporal.ZonedDateTime;
 export function setMonth(
-  date: Temporal.PlainDateTime,
-  month: number,
+    date: Temporal.PlainDateTime,
+    month: number,
 ): Temporal.PlainDateTime;
 export function setMonth(
-  date: Temporal.PlainDate,
-  month: number,
+    date: Temporal.PlainDate,
+    month: number,
 ): Temporal.PlainDate;
 export function setMonth(
-  date: AnyTemporalDate,
-  month: number,
+    date: AnyTemporalDate,
+    month: number,
 ): AnyTemporalDate {
-  return date.with({ month });
+    return date.with({ month });
 }

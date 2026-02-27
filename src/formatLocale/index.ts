@@ -1,7 +1,7 @@
 type FormattableDate =
-  | Temporal.ZonedDateTime
-  | Temporal.PlainDate
-  | Temporal.PlainDateTime;
+    | Temporal.ZonedDateTime
+    | Temporal.PlainDate
+    | Temporal.PlainDateTime;
 
 /**
  * Formats a Temporal date using Intl.DateTimeFormat via toLocaleString.
@@ -12,9 +12,9 @@ type FormattableDate =
  * @returns The locale-formatted string
  */
 export function formatLocale(
-  date: FormattableDate,
-  options?: Intl.DateTimeFormatOptions,
-  locale?: string | string[],
+    date: FormattableDate,
+    options?: Intl.DateTimeFormatOptions,
+    locale?: string | string[],
 ): string {
-  return date.toLocaleString(locale, options);
+    return date.toLocaleString(locale, options);
 }

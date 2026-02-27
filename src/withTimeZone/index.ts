@@ -1,6 +1,6 @@
 export function withTimeZone(
-  date: Temporal.ZonedDateTime,
-  timeZone: string,
+    date: Temporal.ZonedDateTime,
+    timeZone: string,
 ): Temporal.ZonedDateTime {
-  return date.withTimeZone(timeZone);
+    return date.withTimeZone(timeZone);
 }

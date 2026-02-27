@@ -7,10 +7,10 @@ import type { AnyTemporalDate } from "../types.js";
  * @throws {TypeError} if the array is empty
  */
 export function min<T extends AnyTemporalDate>(dates: readonly T[]): T {
-  if (dates.length === 0) {
-    throw new TypeError("min requires at least one date");
-  }
-  return dates.reduce((earliest, date) =>
-    compareAsc(date, earliest) === -1 ? date : earliest,
-  );
+    if (dates.length === 0) {
+        throw new TypeError("min requires at least one date");
+    }
+    return dates.reduce((earliest, date) =>
+        compareAsc(date, earliest) === -1 ? date : earliest,
+    );
 }

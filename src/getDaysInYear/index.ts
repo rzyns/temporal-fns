@@ -7,5 +7,5 @@ import type { AnyTemporalDate } from "../types.js";
  * @returns The number of days in the year (365 or 366)
  */
 export function getDaysInYear(date: AnyTemporalDate): number {
-  return date.daysInYear;
+    return date.daysInYear;
 }

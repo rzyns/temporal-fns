@@ -8,5 +8,5 @@ import type { AnyTemporalInstant } from "../types.js";
  * @returns The number of nanoseconds since the Unix epoch as a BigInt
  */
 export function getEpochNanoseconds(date: AnyTemporalInstant): bigint {
-  return date.epochNanoseconds;
+    return date.epochNanoseconds;
 }

@@ -7,5 +7,5 @@ import type { AnyTemporalDate } from "../types.js";
  * @returns The year
  */
 export function getYear(date: AnyTemporalDate): number {
-  return date.year;
+    return date.year;
 }

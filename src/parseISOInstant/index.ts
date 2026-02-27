@@ -6,5 +6,5 @@
  * @throws {RangeError} If the string cannot be parsed as an Instant
  */
 export function parseISOInstant(s: string): Temporal.Instant {
-  return Temporal.Instant.from(s);
+    return Temporal.Instant.from(s);
 }

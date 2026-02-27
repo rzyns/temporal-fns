@@ -7,5 +7,5 @@ import type { AnyTemporalDate } from "../types.js";
  * @returns The day of the year (1-366)
  */
 export function getDayOfYear(date: AnyTemporalDate): number {
-  return date.dayOfYear;
+    return date.dayOfYear;
 }

@@ -11,27 +11,27 @@ import type { AnyTemporalDate, DayOfWeek, WeekOptions } from "../types.js";
  * @returns A new date set to the target weekday within the same week
  */
 export function setDay(
-  date: Temporal.ZonedDateTime,
-  day: DayOfWeek,
-  options?: WeekOptions,
+    date: Temporal.ZonedDateTime,
+    day: DayOfWeek,
+    options?: WeekOptions,
 ): Temporal.ZonedDateTime;
 export function setDay(
-  date: Temporal.PlainDateTime,
-  day: DayOfWeek,
-  options?: WeekOptions,
+    date: Temporal.PlainDateTime,
+    day: DayOfWeek,
+    options?: WeekOptions,
 ): Temporal.PlainDateTime;
 export function setDay(
-  date: Temporal.PlainDate,
-  day: DayOfWeek,
-  options?: WeekOptions,
+    date: Temporal.PlainDate,
+    day: DayOfWeek,
+    options?: WeekOptions,
 ): Temporal.PlainDate;
 export function setDay(
-  date: AnyTemporalDate,
-  day: DayOfWeek,
-  options?: WeekOptions,
+    date: AnyTemporalDate,
+    day: DayOfWeek,
+    options?: WeekOptions,
 ): AnyTemporalDate {
-  const weekStartsOn = options?.weekStartsOn ?? 1;
-  const weekStart = startOfWeek(date as Temporal.PlainDate, options);
-  const targetOffset = (day - weekStartsOn + 7) % 7;
-  return weekStart.add({ days: targetOffset });
+    const weekStartsOn = options?.weekStartsOn ?? 1;
+    const weekStart = startOfWeek(date as Temporal.PlainDate, options);
+    const targetOffset = (day - weekStartsOn + 7) % 7;
+    return weekStart.add({ days: targetOffset });
 }

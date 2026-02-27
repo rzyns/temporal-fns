@@ -7,5 +7,5 @@
  * @throws {RangeError} If the string cannot be parsed as a ZonedDateTime
  */
 export function parseISOZoned(s: string): Temporal.ZonedDateTime {
-  return Temporal.ZonedDateTime.from(s);
+    return Temporal.ZonedDateTime.from(s);
 }

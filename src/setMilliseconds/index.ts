@@ -8,16 +8,16 @@ import type { AnyTemporalDateTime } from "../types.js";
  * @returns A new date/time with the milliseconds set
  */
 export function setMilliseconds(
-  date: Temporal.ZonedDateTime,
-  milliseconds: number,
+    date: Temporal.ZonedDateTime,
+    milliseconds: number,
 ): Temporal.ZonedDateTime;
 export function setMilliseconds(
-  date: Temporal.PlainDateTime,
-  milliseconds: number,
+    date: Temporal.PlainDateTime,
+    milliseconds: number,
 ): Temporal.PlainDateTime;
 export function setMilliseconds(
-  date: AnyTemporalDateTime,
-  milliseconds: number,
+    date: AnyTemporalDateTime,
+    milliseconds: number,
 ): AnyTemporalDateTime {
-  return date.with({ millisecond: milliseconds });
+    return date.with({ millisecond: milliseconds });
 }

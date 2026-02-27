@@ -1,5 +1,5 @@
 export function isZonedDateTime(
-  value: unknown,
+    value: unknown,
 ): value is Temporal.ZonedDateTime {
-  return value instanceof Temporal.ZonedDateTime;
+    return value instanceof Temporal.ZonedDateTime;
 }

@@ -8,16 +8,16 @@ import type { AnyTemporalDateTime } from "../types.js";
  * @returns A new date/time with the seconds set
  */
 export function setSeconds(
-  date: Temporal.ZonedDateTime,
-  seconds: number,
+    date: Temporal.ZonedDateTime,
+    seconds: number,
 ): Temporal.ZonedDateTime;
 export function setSeconds(
-  date: Temporal.PlainDateTime,
-  seconds: number,
+    date: Temporal.PlainDateTime,
+    seconds: number,
 ): Temporal.PlainDateTime;
 export function setSeconds(
-  date: AnyTemporalDateTime,
-  seconds: number,
+    date: AnyTemporalDateTime,
+    seconds: number,
 ): AnyTemporalDateTime {
-  return date.with({ second: seconds });
+    return date.with({ second: seconds });
 }

@@ -8,5 +8,5 @@ import type { AnyTemporalDate } from "../types.js";
  * @returns The decade (e.g., 2020 for years 2020-2029)
  */
 export function getDecade(date: AnyTemporalDate): number {
-  return Math.floor(date.year / 10) * 10;
+    return Math.floor(date.year / 10) * 10;
 }

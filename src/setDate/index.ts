@@ -8,20 +8,20 @@ import type { AnyTemporalDate } from "../types.js";
  * @returns A new date with the day of month set
  */
 export function setDate(
-  date: Temporal.ZonedDateTime,
-  dayOfMonth: number,
+    date: Temporal.ZonedDateTime,
+    dayOfMonth: number,
 ): Temporal.ZonedDateTime;
 export function setDate(
-  date: Temporal.PlainDateTime,
-  dayOfMonth: number,
+    date: Temporal.PlainDateTime,
+    dayOfMonth: number,
 ): Temporal.PlainDateTime;
 export function setDate(
-  date: Temporal.PlainDate,
-  dayOfMonth: number,
+    date: Temporal.PlainDate,
+    dayOfMonth: number,
 ): Temporal.PlainDate;
 export function setDate(
-  date: AnyTemporalDate,
-  dayOfMonth: number,
+    date: AnyTemporalDate,
+    dayOfMonth: number,
 ): AnyTemporalDate {
-  return date.with({ day: dayOfMonth });
+    return date.with({ day: dayOfMonth });
 }

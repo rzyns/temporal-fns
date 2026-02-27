@@ -7,5 +7,5 @@ import type { AnyTemporalTime } from "../types.js";
  * @returns The hour (0-23)
  */
 export function getHours(date: AnyTemporalTime): number {
-  return date.hour;
+    return date.hour;
 }

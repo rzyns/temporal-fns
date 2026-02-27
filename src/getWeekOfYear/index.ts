@@ -11,5 +11,5 @@ import type { AnyTemporalDate } from "../types.js";
  * @returns The ISO week number (1-53)
  */
 export function getWeekOfYear(date: AnyTemporalDate): number {
-  return date.weekOfYear as number;
+    return date.weekOfYear as number;
 }

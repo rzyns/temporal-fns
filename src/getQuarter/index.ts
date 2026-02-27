@@ -12,5 +12,5 @@ import type { AnyTemporalDate } from "../types.js";
  * @returns The quarter (1-4)
  */
 export function getQuarter(date: AnyTemporalDate): 1 | 2 | 3 | 4 {
-  return Math.ceil(date.month / 3) as 1 | 2 | 3 | 4;
+    return Math.ceil(date.month / 3) as 1 | 2 | 3 | 4;
 }

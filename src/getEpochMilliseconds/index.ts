@@ -8,5 +8,5 @@ import type { AnyTemporalInstant } from "../types.js";
  * @returns The number of milliseconds since the Unix epoch
  */
 export function getEpochMilliseconds(date: AnyTemporalInstant): number {
-  return date.epochMilliseconds;
+    return date.epochMilliseconds;
 }

@@ -1,5 +1,5 @@
 export function toPlainDate(
-  date: Temporal.ZonedDateTime | Temporal.PlainDateTime,
+    date: Temporal.ZonedDateTime | Temporal.PlainDateTime,
 ): Temporal.PlainDate {
-  return date.toPlainDate();
+    return date.toPlainDate();
 }

@@ -8,16 +8,16 @@ import type { AnyTemporalDateTime } from "../types.js";
  * @returns A new date/time with the minutes set
  */
 export function setMinutes(
-  date: Temporal.ZonedDateTime,
-  minutes: number,
+    date: Temporal.ZonedDateTime,
+    minutes: number,
 ): Temporal.ZonedDateTime;
 export function setMinutes(
-  date: Temporal.PlainDateTime,
-  minutes: number,
+    date: Temporal.PlainDateTime,
+    minutes: number,
 ): Temporal.PlainDateTime;
 export function setMinutes(
-  date: AnyTemporalDateTime,
-  minutes: number,
+    date: AnyTemporalDateTime,
+    minutes: number,
 ): AnyTemporalDateTime {
-  return date.with({ minute: minutes });
+    return date.with({ minute: minutes });
 }

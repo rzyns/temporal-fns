@@ -7,5 +7,5 @@ import type { AnyTemporalTime } from "../types.js";
  * @returns The millisecond (0-999)
  */
 export function getMilliseconds(date: AnyTemporalTime): number {
-  return date.millisecond;
+    return date.millisecond;
 }

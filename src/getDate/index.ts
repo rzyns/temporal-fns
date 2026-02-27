@@ -7,5 +7,5 @@ import type { AnyTemporalDate } from "../types.js";
  * @returns The day of the month (1-31)
  */
 export function getDate(date: AnyTemporalDate): number {
-  return date.day;
+    return date.day;
 }

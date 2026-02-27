@@ -6,5 +6,5 @@
  * @throws {RangeError} If the string cannot be parsed as a PlainDate
  */
 export function parseISODate(s: string): Temporal.PlainDate {
-  return Temporal.PlainDate.from(s);
+    return Temporal.PlainDate.from(s);
 }

@@ -1,14 +1,14 @@
 export type {
-  AnyTemporalDate,
-  AnyTemporalDateTime,
-  AnyTemporalInstant,
-  AnyTemporalTime,
-  TemporalInterval,
-  ClockProvider,
-  NowOptions,
-  WeekOptions,
-  WorkingDayOptions,
-  DayOfWeek,
+    AnyTemporalDate,
+    AnyTemporalDateTime,
+    AnyTemporalInstant,
+    AnyTemporalTime,
+    TemporalInterval,
+    ClockProvider,
+    NowOptions,
+    WeekOptions,
+    WorkingDayOptions,
+    DayOfWeek,
 } from "./types.js";
 export { systemClock } from "./types.js";
 

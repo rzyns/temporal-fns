@@ -6,8 +6,8 @@ import type { AnyTemporalDate } from "../types.js";
  * Returns -1 if left > right, 0 if equal, or 1 if left < right.
  */
 export function compareDesc(
-  dateLeft: AnyTemporalDate,
-  dateRight: AnyTemporalDate,
+    dateLeft: AnyTemporalDate,
+    dateRight: AnyTemporalDate,
 ): -1 | 0 | 1 {
-  return compareAsc(dateRight, dateLeft);
+    return compareAsc(dateRight, dateLeft);
 }

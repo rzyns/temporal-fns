@@ -7,7 +7,7 @@ import type { AnyTemporalDate } from "../types.js";
  * @returns The ISO 8601 string representation
  */
 export function formatISO(
-  date: AnyTemporalDate | Temporal.Instant | Temporal.PlainTime,
+    date: AnyTemporalDate | Temporal.Instant | Temporal.PlainTime,
 ): string {
-  return date.toString();
+    return date.toString();
 }

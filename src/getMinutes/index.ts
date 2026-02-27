@@ -7,5 +7,5 @@ import type { AnyTemporalTime } from "../types.js";
  * @returns The minute (0-59)
  */
 export function getMinutes(date: AnyTemporalTime): number {
-  return date.minute;
+    return date.minute;
 }
