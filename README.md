@@ -192,6 +192,46 @@ const zdt = coerce(row.ts, { timeZone: "America/New_York" });
 
 `coerce` also passes through any Temporal type unchanged (identity), parses ISO strings via `parseISO`, and throws on invalid input.
 
+### Comparing Instants — `AnyTemporalComparable`
+
+All comparison and ordering functions (`compareAsc`, `compareDesc`, `isAfter`, `isBefore`, `isEqual`, `min`, `max`, `clamp`, `closestTo`, `closestIndexTo`, `differenceInMilliseconds`) accept `Temporal.Instant` in addition to calendar-based date types.
+
+The `AnyTemporalComparable` type captures every Temporal type with a defined ordering:
+
+```typescript
+type AnyTemporalComparable = AnyTemporalDate | Temporal.Instant;
+// i.e. PlainDate | PlainDateTime | ZonedDateTime | Instant
+```
+
+**Instant + ZonedDateTime** — compared by their absolute epoch time:
+
+```typescript
+import { isAfter, min } from "temporal-fns";
+
+const a = Temporal.Instant.from("2025-01-15T17:00:00Z");
+const b = Temporal.ZonedDateTime.from("2025-01-15T12:00:00[America/New_York]");
+// 12:00 EST = 17:00 UTC → same instant
+isAfter(a, b); // false
+
+const earliest = min([
+  Temporal.Instant.from("2025-06-01T00:00:00Z"),
+  Temporal.Instant.from("2025-01-01T00:00:00Z"),
+]); // 2025-01-01T00:00:00Z
+```
+
+**Instant + PlainDate/PlainDateTime** — throws `TypeError` because wall-clock types have no epoch:
+
+```typescript
+import { compareAsc } from "temporal-fns";
+
+const instant = Temporal.Instant.from("2025-01-15T12:00:00Z");
+const plain = Temporal.PlainDate.from("2025-01-15");
+
+compareAsc(instant, plain);
+// TypeError: Cannot compare a PlainDate with a Temporal.Instant:
+// wall-clock types have no defined epoch. Convert to ZonedDateTime first.
+```
+
 ## API
 
 ### Composition
